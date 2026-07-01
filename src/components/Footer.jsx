@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Zap, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { NAV_LINKS, SITE_NAME } from '@/lib/constants';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -8,10 +9,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <div className="footer-brand-logo">
-              <Zap size={22} />
-              {SITE_NAME}
-            </div>
+            <Link href="/" className="footer-brand-logo">
+              <Logo size={40} light />
+            </Link>
             <p>
               Platform pembelajaran digital Instalasi Penerangan Listrik untuk siswa SMK Negeri Semarang.
               Belajar kapan saja, di mana saja, dengan bantuan AI.

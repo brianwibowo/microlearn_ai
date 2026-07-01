@@ -58,6 +58,18 @@ V = Tegangan (Volt)
 I = Arus (Ampere)
 R = Hambatan (Ohm)</code></pre>
 
+<div class="materi-diagram-wrapper">
+  <svg width="200" height="160" viewBox="0 0 240 200" style="display:block;">
+    <polygon points="120,20 20,170 220,170" stroke="#60A5FA" stroke-width="4" fill="#1E293B" />
+    <line x1="120" y1="20" x2="120" y2="95" stroke="#60A5FA" stroke-width="3" />
+    <line x1="45" y1="95" x2="195" y2="95" stroke="#60A5FA" stroke-width="3" />
+    <text x="120" y="75" fill="#FBBF24" font-size="28" font-family="sans-serif" font-weight="bold" text-anchor="middle">V</text>
+    <text x="75" y="145" fill="#F8FAFC" font-size="28" font-family="sans-serif" font-weight="bold" text-anchor="middle">I</text>
+    <text x="165" y="145" fill="#F8FAFC" font-size="28" font-family="sans-serif" font-weight="bold" text-anchor="middle">R</text>
+  </svg>
+  <div class="materi-diagram-caption">Gambar 1.1: Segitiga Rumus Hubungan Hukum Ohm (V, I, R)</div>
+</div>
+
 <p>Dari rumus ini bisa diturunkan:</p>
 <ul>
   <li><strong>I = V / R</strong> — mencari arus</li>
@@ -298,15 +310,28 @@ W = 100 × 10 = 1.000 Wh = 1 kWh</code></pre>
 </ul>
 
 <h3>Diagram Pengawatan</h3>
-<pre><code>Sumber PLN
-    │
-   MCB
-    │
-    ├──── Fasa (L) ──→ Saklar ──→ Fitting Lampu
-    │                                    │
-    └──── Netral (N) ───────────→ Fitting Lampu
-                                         │
-                            Ground (PE) ──┘</code></pre>
+<div class="materi-diagram-wrapper">
+  <svg width="320" height="150" viewBox="0 0 320 150" style="display:block;">
+    <line x1="20" y1="30" x2="300" y2="30" stroke="#EF4444" stroke-width="2.5" />
+    <line x1="20" y1="120" x2="300" y2="120" stroke="#3B82F6" stroke-width="2.5" />
+    <text x="30" y="24" fill="#EF4444" font-size="9" font-family="sans-serif" font-weight="bold">FASA (L)</text>
+    <text x="30" y="135" fill="#3B82F6" font-size="9" font-family="sans-serif" font-weight="bold">NETRAL (N)</text>
+    <line x1="80" y1="30" x2="80" y2="60" stroke="#EF4444" stroke-width="2" />
+    <circle cx="80" cy="30" r="2.5" fill="#EF4444" />
+    <circle cx="80" cy="60" r="3" fill="#E2E8F0" />
+    <line x1="80" y1="60" x2="105" y2="45" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="110" cy="60" r="3" fill="#E2E8F0" />
+    <text x="60" y="80" fill="#94A3B8" font-size="9" font-family="sans-serif">SAKLAR TUNGGAL</text>
+    <path d="M 110 60 H 220 V 90" stroke="#EF4444" stroke-width="2" fill="none" />
+    <circle cx="220" cy="100" r="10" stroke="#FBBF24" stroke-width="2" fill="none" />
+    <line x1="213" y1="93" x2="227" y2="107" stroke="#FBBF24" stroke-width="1.5" />
+    <line x1="213" y1="107" x2="227" y2="93" stroke="#FBBF24" stroke-width="1.5" />
+    <text x="238" y="104" fill="#94A3B8" font-size="9" font-family="sans-serif">LAMPU</text>
+    <line x1="220" y1="110" x2="220" y2="120" stroke="#3B82F6" stroke-width="2" />
+    <circle cx="220" cy="120" r="2.5" fill="#3B82F6" />
+  </svg>
+  <div class="materi-diagram-caption">Gambar 3.1: Skema Pengawatan Instalasi Saklar Tunggal</div>
+</div>
 
 <h3>Langkah Pemasangan</h3>
 <ol>
@@ -610,13 +635,26 @@ Penghematan LED vs Pijar = Rp 18.720/bulan per titik lampu!</code></pre>
         content: `<h2>Bahaya Listrik & Pencegahan</h2>
 
 <h3>Bahaya Utama Listrik</h3>
+<div class="materi-diagram-wrapper" style="border-left: 4px solid #EF4444;">
+  <svg width="280" height="120" viewBox="0 0 280 120" style="display:block;">
+    <polygon points="40,20 10,95 70,95" fill="#EF4444" />
+    <polygon points="40,27 15,90 65,90" fill="#FBBF24" />
+    <path d="M 40 40 L 40 70 M 40 78 A 1 1 0 1 1 39.99 78" stroke="#000" stroke-width="4" stroke-linecap="round" fill="none" />
+    <text x="95" y="45" fill="#EF4444" font-size="12" font-family="sans-serif" font-weight="bold">WARNING: HIGH VOLTAGE</text>
+    <text x="95" y="65" fill="#F8FAFC" font-size="10" font-family="sans-serif">Arus &gt; 50 mA dapat menyebabkan</text>
+    <text x="95" y="80" fill="#F8FAFC" font-size="10" font-family="sans-serif">henti jantung secara langsung (FATAL).</text>
+    <text x="95" y="95" fill="#34D399" font-size="9" font-family="sans-serif" font-weight="bold">Selalu gunakan sarung tangan &amp; sepatu isolasi.</text>
+  </svg>
+  <div class="materi-diagram-caption">Gambar 6.1: Peringatan Bahaya Sengatan Listrik &amp; APD Wajib</div>
+</div>
+
 <ol>
   <li><strong>Sengatan Listrik (Electric Shock)</strong>
     <ul>
       <li>Arus 1 mA — terasa kesemutan</li>
       <li>Arus 10-20 mA — otot kejang, tidak bisa melepas genggaman</li>
       <li>Arus 50-100 mA — <strong>FATAL</strong>, bisa menyebabkan henti jantung</li>
-      <li>Arus >100 mA — luka bakar parah, kematian</li>
+      <li>Arus &gt;100 mA — luka bakar parah, kematian</li>
     </ul>
   </li>
   <li><strong>Kebakaran</strong> — Akibat hubung singkat, overload, atau sambungan longgar yang menimbulkan panas</li>

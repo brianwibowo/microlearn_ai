@@ -11,7 +11,6 @@ import { DAILY_MESSAGE_LIMIT } from '@/lib/constants';
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [remaining, setRemaining] = useState(DAILY_MESSAGE_LIMIT);
   const [showSneakPeek, setShowSneakPeek] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const messagesEndRef = useRef(null);
@@ -19,6 +18,8 @@ export default function Chatbot() {
   const fileInputRef = useRef(null);
   const hasMounted = useRef(false);
 
+  // Compute remaining messages dynamically on render
+  const remaining = getRemainingMessages();
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
@@ -36,16 +37,9 @@ export default function Chatbot() {
         ],
       },
     ],
-    onFinish: () => {
-      updateRemaining();
-    },
   });
 
   const isLoading = status === 'submitted' || status === 'streaming';
-
-  const updateRemaining = () => {
-    setRemaining(getRemainingMessages());
-  };
 
   // Show sneak peek after mount (avoids double animation from Strict Mode)
   useEffect(() => {
@@ -54,17 +48,6 @@ export default function Chatbot() {
     const timer = setTimeout(() => setShowSneakPeek(true), 500);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    updateRemaining();
-  }, [isOpen]);
-
-  // Update remaining on finish
-  useEffect(() => {
-    if (!isLoading) {
-      updateRemaining();
-    }
-  }, [isLoading]);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -105,6 +88,13 @@ export default function Chatbot() {
     sendMessage({ text: input, files });
     setInput('');
     setSelectedFiles([]);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      onSubmit(e);
+    }
   };
 
   const quotaClass = isLimitReached() ? 'limit' : isWarning() ? 'warning' : '';
@@ -342,16 +332,18 @@ export default function Chatbot() {
               <Paperclip size={20} />
             </button>
 
-            <input
+            <textarea
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder={
                 isLimitReached()
                   ? 'Kuota habis untuk hari ini...'
                   : 'Tanyakan sesuatu...'
               }
               disabled={isLimitReached()}
+              rows={1}
             />
             <button
               type="submit"

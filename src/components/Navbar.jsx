@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Menu, X, Zap } from 'lucide-react';
+import Logo from './Logo';
 import { NAV_LINKS } from '@/lib/constants';
 
 export default function Navbar() {
@@ -27,10 +27,7 @@ export default function Navbar() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
           <Link href="/" className="navbar-logo">
-            <span className="navbar-logo-icon">
-              <Zap size={20} />
-            </span>
-            MicroLearn AI
+            <Logo size={36} />
           </Link>
 
           <div className="navbar-links">

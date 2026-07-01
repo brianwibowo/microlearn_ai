@@ -60,6 +60,8 @@ function useTypingEffect(texts, typingSpeed = 60, deleteSpeed = 40, pauseDelay =
   return displayText;
 }
 
+import InteractiveCircuit from './InteractiveCircuit';
+
 export default function Hero() {
   const typedText = useTypingEffect(TYPING_TEXTS);
 
@@ -114,21 +116,29 @@ export default function Hero() {
               <br />
               Lebih <span className="highlight-alt">Interaktif</span>
             </h1>
-            <div className="hero-typing-wrapper">
-              <Zap size={16} className="hero-typing-icon" />
-              <span className="hero-typed-text">{typedText}</span>
-              <span className="hero-cursor">|</span>
+            <div className="hero-typing-wrapper" style={{ background: 'none', border: 'none', padding: '0 0 16px 0', margin: 0 }}>
+              <Zap size={16} className="hero-typing-icon" style={{ color: '#FBBF24' }} />
+              <span className="hero-typed-text" style={{ fontSize: '1.05rem', color: '#38BDF8', fontWeight: 600 }}>{typedText}</span>
+              <span className="hero-cursor" style={{ color: '#38BDF8' }}>|</span>
             </div>
             <p className="hero-description">
               Platform microlearning untuk siswa SMK Negeri Semarang — pelajari instalasi penerangan listrik
               dengan modul interaktif, kuis adaptif, dan chatbot AI yang siap bantu 24/7.
             </p>
             <div className="hero-actions">
-              <Link href="/materi" className="btn btn-primary btn-lg hero-btn-glow">
+              <Link
+                href="/materi"
+                className="btn btn-primary btn-lg hero-btn-glow"
+                style={{
+                  background: 'linear-gradient(135deg, #0EA5E9, #1D4ED8)',
+                  borderColor: '#0EA5E9',
+                  color: '#FFFFFF'
+                }}
+              >
                 Mulai Belajar
                 <ArrowRight size={20} />
               </Link>
-              <Link href="/kuis" className="btn btn-secondary btn-lg">
+              <Link href="/kuis" className="btn btn-secondary btn-lg" style={{ background: 'rgba(255,255,255,0.06)', color: '#F8FAFC', borderColor: 'rgba(255,255,255,0.15)' }}>
                 Coba Latihan Kuis
               </Link>
             </div>
@@ -149,63 +159,9 @@ export default function Hero() {
           </div>
 
           <div className="hero-visual">
-            <div className="hero-visual-grid">
-              {/* Main center piece — glassmorphic dashboard mockup */}
-              <div className="hero-dashboard">
-                <div className="hero-dashboard-header">
-                  <div className="hero-dashboard-dots">
-                    <span /><span /><span />
-                  </div>
-                  <span className="hero-dashboard-title">MicroLearn AI Dashboard</span>
-                </div>
-                <div className="hero-dashboard-body">
-                  {/* Mini chat preview */}
-                  <div className="hero-mini-chat">
-                    <div className="hero-mini-msg bot">
-                      <Bot size={14} />
-                      <span>Halo! Mau belajar apa hari ini? ⚡</span>
-                    </div>
-                    <div className="hero-mini-msg user">
-                      <span>Jelaskan Hukum Ohm</span>
-                    </div>
-                    <div className="hero-mini-msg bot">
-                      <Bot size={14} />
-                      <span><strong>V = I × R</strong> — Tegangan sama dengan arus dikali hambatan...</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating feature cards */}
-              <div className="hero-floating-card card-1">
-                <div className="hero-floating-card-icon" style={{ background: 'rgba(37,99,235,0.12)', color: 'var(--primary)' }}>
-                  <BookOpen size={20} />
-                </div>
-                <div>
-                  <div style={{ color: 'var(--neutral-900)' }}>7 Modul</div>
-                  <div style={{ fontSize: '11px', color: 'var(--neutral-500)', fontWeight: 'normal' }}>Materi Lengkap</div>
-                </div>
-              </div>
-
-              <div className="hero-floating-card card-2">
-                <div className="hero-floating-card-icon" style={{ background: 'rgba(16,185,129,0.12)', color: 'var(--secondary)' }}>
-                  <Award size={20} />
-                </div>
-                <div>
-                  <div style={{ color: 'var(--neutral-900)' }}>Kuis Interaktif</div>
-                  <div style={{ fontSize: '11px', color: 'var(--neutral-500)', fontWeight: 'normal' }}>Instant Feedback</div>
-                </div>
-              </div>
-
-              <div className="hero-floating-card card-3">
-                <div className="hero-floating-card-icon" style={{ background: 'rgba(124,58,237,0.12)', color: '#7C3AED' }}>
-                  <Shield size={20} />
-                </div>
-                <div>
-                  <div style={{ color: 'var(--neutral-900)' }}>K3 Listrik</div>
-                  <div style={{ fontSize: '11px', color: 'var(--neutral-500)', fontWeight: 'normal' }}>PUIL 2011</div>
-                </div>
-              </div>
+            <div className="hero-visual-grid" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              {/* Interactive Circuit Diagram widget */}
+              <InteractiveCircuit />
             </div>
           </div>
         </div>

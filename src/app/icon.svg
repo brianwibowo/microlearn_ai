@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="electric-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#60A5FA" />
+      <stop offset="100%" stopColor="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="energy-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FBBF24" />
+      <stop offset="100%" stopColor="#F59E0B" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer circle with glowing stroke -->
+  <circle cx="16" cy="16" r="14" fill="#0F172A" stroke="url(#electric-grad)" strokeWidth="2" />
+  
+  <!-- Inner circuit board lines -->
+  <path d="M6 16 H10 M22 16 H26 M16 6 V10 M16 22 V26" stroke="#60A5FA" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+  
+  <!-- Mini circuit nodes -->
+  <circle cx="10" cy="16" r="1" fill="#60A5FA" />
+  <circle cx="22" cy="16" r="1" fill="#60A5FA" />
+  <circle cx="16" cy="10" r="1" fill="#60A5FA" />
+  
+  <!-- Lightbulb silhouette -->
+  <path d="M12 14.5C12 12 13.8 10 16 10C18.2 10 20 12 20 14.5C20 16.5 18.5 18.2 17.5 19C17 19.3 17 20 17 21H15C15 20 15 19.3 14.5 19C13.5 18.2 12 16.5 12 14.5Z" stroke="url(#electric-grad)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  
+  <!-- Base of lightbulb -->
+  <path d="M14.5 23H17.5 M15 25H17" stroke="url(#electric-grad)" strokeWidth="1.5" strokeLinecap="round" />
+  
+  <!-- Energy lightning core -->
+  <path d="M17 12L14 16.5H17L15 20L19 15.5H16.5L17 12Z" fill="url(#energy-grad)" />
+</svg>
