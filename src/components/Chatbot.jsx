@@ -75,7 +75,6 @@ export default function Chatbot() {
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 300);
-      setShowSneakPeek(false);
     }
   }, [isOpen]);
 
@@ -187,7 +186,10 @@ export default function Chatbot() {
 
           <button
             className="chatbot-trigger"
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setIsOpen(true);
+              setShowSneakPeek(false);
+            }}
             aria-label="Buka chatbot"
             style={{ position: 'static' }}
           >
