@@ -195,8 +195,8 @@ export default function Chatbot() {
           {/* Header */}
           <div className="chatbot-header">
             <div className="chatbot-header-info">
-              <div className="chatbot-avatar">
-                <Bot size={18} />
+              <div className="chatbot-avatar" style={{ padding: 0, overflow: 'hidden' }}>
+                <img src="/mascot/zeus-avatar.png" alt="Zeus AI" width={32} height={32} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div className="chatbot-header-text">
                 <h3>MicroLearn AI</h3>
@@ -219,8 +219,8 @@ export default function Chatbot() {
             ))}
             {isLoading && (
               <div className="chat-message assistant">
-                <div className="chat-message-avatar">
-                  <Bot size={14} />
+                <div className="chat-message-avatar" style={{ padding: 0, overflow: 'hidden' }}>
+                  <img src="/mascot/zeus-avatar.png" alt="Zeus AI" width={24} height={24} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="chat-message-bubble">
                   <div className="typing-indicator">
@@ -233,8 +233,8 @@ export default function Chatbot() {
             )}
             {error && (
               <div className="chat-message assistant">
-                <div className="chat-message-avatar">
-                  <Bot size={14} />
+                <div className="chat-message-avatar" style={{ padding: 0, overflow: 'hidden' }}>
+                  <img src="/mascot/zeus-avatar.png" alt="Zeus AI" width={24} height={24} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="chat-message-bubble" style={{ color: 'var(--danger)' }}>
                   Maaf, terjadi kesalahan. Silakan coba lagi nanti.

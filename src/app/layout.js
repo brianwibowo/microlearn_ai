@@ -3,6 +3,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import ScrollToTop from '@/components/ScrollToTop';
+import ElectricCursorTrail from '@/components/ElectricCursorTrail';
+import CircuitTransition from '@/components/CircuitTransition';
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
 
 export const viewport = {
@@ -22,7 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id">
+    <html lang="id" data-scroll-behavior="smooth">
       <body>
         <Navbar />
         <main style={{ minHeight: '80vh' }}>
@@ -31,7 +33,10 @@ export default function RootLayout({ children }) {
         <Footer />
         <Chatbot />
         <ScrollToTop />
+        <ElectricCursorTrail />
+        <CircuitTransition />
       </body>
     </html>
   );
 }
+

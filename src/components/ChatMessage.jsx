@@ -75,8 +75,8 @@ export default function ChatMessage({ message }) {
 
   return (
     <div className={`chat-message ${isUser ? 'user' : 'assistant'}`}>
-      <div className="chat-message-avatar">
-        {isUser ? <User size={14} /> : <Bot size={14} />}
+      <div className="chat-message-avatar" style={!isUser ? { padding: 0, overflow: 'hidden' } : {}}>
+        {isUser ? <User size={14} /> : <img src="/mascot/zeus-avatar.png" alt="Zeus AI" width={24} height={24} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
       </div>
       <div className="chat-message-bubble">
         {renderContent()}

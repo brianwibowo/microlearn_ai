@@ -191,6 +191,22 @@ export default function QuizEngine({ quiz }) {
           <small>SKOR</small>
         </div>
 
+        {/* Zeus Mascot Reaksi */}
+        <div style={{ margin: '16px 0' }}>
+          <img 
+            src={scorePercent >= 60 ? '/mascot/zeus-pass.png' : '/mascot/zeus-fail.png'} 
+            alt={scorePercent >= 60 ? 'Zeus merayakan keberhasilan' : 'Zeus memberi semangat'}
+            width={140}
+            height={140}
+            style={{ 
+              filter: scorePercent >= 60 
+                ? 'drop-shadow(0 6px 16px rgba(56, 189, 248, 0.3))' 
+                : 'drop-shadow(0 6px 16px rgba(100, 116, 139, 0.3))',
+              animation: 'floatMascot 3s ease-in-out infinite',
+            }}
+          />
+        </div>
+
         <h2>{scorePercent >= 60 ? 'Selamat! 🎉' : 'Tetap Semangat! 💪'}</h2>
         <p>{getMotivation()}</p>
 

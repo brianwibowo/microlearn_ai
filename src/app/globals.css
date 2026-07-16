@@ -1214,7 +1214,7 @@ h3 { font-size: var(--fs-h3); }
 }
 
 .footer-brand {
-  max-width: 280px;
+  max-width: 340px;
 }
 
 .footer-brand-logo {
@@ -2659,4 +2659,76 @@ h3 { font-size: var(--fs-h3); }
   color: var(--danger);
 }
 
+/* ---------- Glitch Text Effect ---------- */
 
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text.glitching {
+  animation: glitchShake 0.6s ease-in-out;
+}
+
+/* Lapisan pseudo ::before dan ::after untuk membuat efek bayangan warna (chromatic aberration) */
+.glitch-text.glitching::before,
+.glitch-text.glitching::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glitch-text.glitching::before {
+  color: #38BDF8;
+  animation: glitchLayer1 0.6s ease-in-out;
+  clip-path: inset(0 0 60% 0);
+}
+
+.glitch-text.glitching::after {
+  color: #FBBF24;
+  animation: glitchLayer2 0.6s ease-in-out;
+  clip-path: inset(60% 0 0 0);
+}
+
+@keyframes glitchShake {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-3px, 1px); }
+  20% { transform: translate(3px, -1px); }
+  30% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  50% { transform: translate(-1px, 1px); opacity: 0.85; }
+  60% { transform: translate(1px, 0); }
+  70% { transform: translate(-1px, -1px); }
+  80% { transform: translate(0, 1px); opacity: 0.9; }
+  90% { transform: translate(1px, 0); }
+}
+
+@keyframes glitchLayer1 {
+  0%, 100% { transform: translate(0); opacity: 0; }
+  15% { transform: translate(-4px, -1px); opacity: 0.7; }
+  30% { transform: translate(3px, 1px); opacity: 0.5; }
+  45% { transform: translate(-2px, 0); opacity: 0.6; }
+  60% { transform: translate(1px, -1px); opacity: 0.3; }
+  75% { transform: translate(0); opacity: 0; }
+}
+
+@keyframes glitchLayer2 {
+  0%, 100% { transform: translate(0); opacity: 0; }
+  10% { transform: translate(4px, 1px); opacity: 0.7; }
+  25% { transform: translate(-3px, -1px); opacity: 0.5; }
+  40% { transform: translate(2px, 0); opacity: 0.6; }
+  55% { transform: translate(-1px, 1px); opacity: 0.3; }
+  70% { transform: translate(0); opacity: 0; }
+}
+
+/* ---------- Mascot Float Animation ---------- */
+
+@keyframes floatMascot {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}

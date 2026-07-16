@@ -1,21 +1,171 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { NAV_LINKS, SITE_NAME } from '@/lib/constants';
 import Logo from './Logo';
 
+// Karakter-karakter kelistrikan, sirkuit, dan biner bertema TITL
+const GLYPHS = '⚡VWAΩHzµF+-~█░▒▓01[](){}*#@';
+
 export default function Footer() {
+  const footerRef = useRef(null);
+  const [randomString, setRandomString] = useState('');
+
+  // Buat deretan karakter acak awal untuk seluruh area footer
+  useEffect(() => {
+    const generateString = () => {
+      let str = '';
+      // Dinaikkan ke 5000 karakter agar mengisi penuh tinggi seluruh footer hingga paling bawah (footer-bottom)
+      for (let i = 0; i < 5000; i++) {
+        str += GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
+      }
+      return str;
+    };
+
+    setRandomString(generateString());
+
+    // Efek flicker kelistrikan: ubah sebagian kecil karakter secara acak setiap 150ms
+    const interval = setInterval(() => {
+      setRandomString((prev) => {
+        const arr = prev.split('');
+        for (let i = 0; i < 80; i++) { // Jumlah diubah menjadi 80 karena panjang string bertambah
+          const idx = Math.floor(Math.random() * arr.length);
+          arr[idx] = GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
+        }
+        return arr.join('');
+      });
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleMouseMove = (e) => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const rect = footer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Simpan posisi kursor ke variabel CSS
+    footer.style.setProperty('--x', `${x}px`);
+    footer.style.setProperty('--y', `${y}px`);
+  };
+
   return (
-    <footer className="footer">
-      <div className="container">
+    <footer 
+      ref={footerRef}
+      onMouseMove={handleMouseMove}
+      className="footer" 
+      style={{ 
+        position: 'relative', 
+        overflow: 'hidden',
+        background: '#0B1329',
+        color: 'var(--neutral-400)',
+        paddingTop: 'var(--space-3xl)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+      }}
+    >
+      {/* 1. Electric Running Spark Top Divider */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', overflow: 'hidden', zIndex: 3 }} aria-hidden="true">
+        {/* Neon glow backdrop */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '1.5px', background: 'linear-gradient(to right, transparent, var(--secondary), var(--primary-light), var(--secondary), transparent)', boxShadow: '0 0 8px var(--secondary)' }} />
+        {/* SVG Spark Motion */}
+        <svg width="100%" height="4" style={{ position: 'absolute', top: 0, left: 0 }}>
+          <line x1="0" y1="1" x2="100%" y2="1" stroke="rgba(56, 189, 248, 0.2)" strokeWidth="1" />
+          <circle r="3" fill="var(--accent)" style={{ filter: 'drop-shadow(0 0 6px var(--accent))' }}>
+            <animateMotion dur="8s" repeatCount="indefinite" path="M-20,1 L2200,1" />
+          </circle>
+        </svg>
+      </div>
+
+      {/* 2. BACKGROUND GLYPHS GRID DIM (Latar belakang tulisan kelistrikan redup di seluruh footer) */}
+      <div
+        className="evervault-grid-dim"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.015, // Dibuat sangat redup agar teks depan tetap terbaca dengan jelas
+          fontFamily: 'monospace',
+          fontSize: '11px',
+          fontWeight: 'bold',
+          lineHeight: '1.3',
+          letterSpacing: '3px',
+          color: '#FFF',
+          wordBreak: 'break-all',
+          pointerEvents: 'none',
+          userSelect: 'none',
+          padding: '24px',
+          zIndex: 0,
+        }}
+      >
+        {randomString}
+      </div>
+
+      {/* 3. BACKGROUND GLYPHS GLOW (Terang menyala hanya di bawah posisi kursor di seluruh area footer) */}
+      <div
+        className="evervault-grid-glow"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.35, // Dikurangi dari 0.85 agar tidak bertabrakan dengan kontras teks putih
+          fontFamily: 'monospace',
+          fontSize: '11px',
+          fontWeight: 'bold',
+          lineHeight: '1.3',
+          letterSpacing: '3px',
+          color: 'var(--secondary)', // Warna cyan neon
+          wordBreak: 'break-all',
+          pointerEvents: 'none',
+          userSelect: 'none',
+          padding: '24px',
+          // Masking berbentuk lingkaran mengikuti posisi kursor (--x, --y)
+          maskImage: 'radial-gradient(150px circle at var(--x, 0px) var(--y, 0px), white 15%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(150px circle at var(--x, 0px) var(--y, 0px), white 15%, transparent 100%)',
+          filter: 'drop-shadow(0 0 5px var(--secondary))',
+          zIndex: 1,
+        }}
+      >
+        {randomString}
+      </div>
+
+      {/* 4. LIGHTNING SHOCK SPOT (Semburan cahaya gradasi oranye/kuning listrik) */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'radial-gradient(120px circle at var(--x, 0px) var(--y, 0px), rgba(234, 179, 8, 0.12), transparent 100%)',
+          zIndex: 2,
+        }}
+      />
+
+      {/* 5. KONTEN UTAMA FOOTER (Z-Index di atas efek) */}
+      <div className="container" style={{ position: 'relative', zIndex: 4 }}>
         <div className="footer-grid">
-          <div className="footer-brand">
-            <Link href="/" className="footer-brand-logo">
+          <div className="footer-brand" style={{ maxWidth: '340px' }}>
+            <Link href="/" className="footer-brand-logo" style={{ display: 'flex', marginBottom: '16px' }}>
               <Logo size={40} light />
             </Link>
-            <p>
+            <p style={{ margin: 0, lineHeight: '1.8' }}>
               Platform pembelajaran digital Instalasi Penerangan Listrik untuk siswa SMK Negeri Semarang.
               Belajar kapan saja, di mana saja, dengan bantuan AI.
             </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '9px', color: 'var(--accent)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '20px' }}>
+              <span 
+                style={{ 
+                  width: '6px', 
+                  height: '6px', 
+                  borderRadius: '50%', 
+                  backgroundColor: '#22C55E', 
+                  boxShadow: '0 0 8px #22C55E',
+                  display: 'inline-block'
+                }} 
+              />
+              Grid System: 220V Active
+            </div>
           </div>
 
           <div className="footer-column">
@@ -56,7 +206,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-bottom">
+        <div className="footer-bottom" style={{ borderColor: 'rgba(255, 255, 255, 0.08)' }}>
           <p>&copy; {new Date().getFullYear()} {SITE_NAME}. SMK Negeri Semarang.</p>
           <div className="footer-social">
             <a href="#" aria-label="Instagram">
