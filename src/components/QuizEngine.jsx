@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Play, ChevronRight, RotateCcw, ArrowLeft, CheckCircle, XCircle, HelpCircle, Trophy } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Play, ChevronRight, RotateCcw, ArrowLeft, CheckCircle, XCircle, Trophy, Clock, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function QuizEngine({ quiz }) {
@@ -10,6 +10,7 @@ export default function QuizEngine({ quiz }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [answers, setAnswers] = useState([]);
+  const [timeLeft, setTimeLeft] = useState(0);
 
   const totalQuestions = quiz.questions.length;
   const currentQuestion = quiz.questions[currentIndex];
@@ -20,7 +21,68 @@ export default function QuizEngine({ quiz }) {
     setSelectedAnswer(null);
     setShowExplanation(false);
     setAnswers([]);
+    setTimeLeft(totalQuestions * 60); // 1 menit per soal
   };
+
+  // 1. Timer Countdown Effect
+  useEffect(() => {
+    if (state !== 'playing') return;
+
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setState('finished'); // Auto-submit ketika waktu habis
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [state]);
+
+  // 2. Tab close/reload blocker (beforeunload)
+  useEffect(() => {
+    if (state !== 'playing') return;
+
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = 'Kuis sedang berlangsung! Apakah Anda yakin ingin keluar? Semua kemajuan kuis Anda akan hilang.';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [state]);
+
+  // 3. Client-side navigation blocker (intercepts clicks on anchor links)
+  useEffect(() => {
+    if (state !== 'playing') return;
+
+    const handleAnchorClick = (e) => {
+      const target = e.target.closest('a');
+      if (target) {
+        // Abaikan link jika tujuannya tidak memicu perpindahan halaman keluar (misal '#' kosong)
+        const href = target.getAttribute('href');
+        if (href && href !== '#' && !href.startsWith('javascript:')) {
+          const confirmLeave = window.confirm(
+            'Kuis sedang berlangsung! Jika Anda keluar halaman sekarang, seluruh jawaban Anda akan hilang. Apakah Anda yakin ingin keluar dan membatalkan kuis?'
+          );
+          if (!confirmLeave) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick, true); // Gunakan capture phase
+    return () => {
+      document.removeEventListener('click', handleAnchorClick, true);
+    };
+  }, [state]);
 
   const handleSelectAnswer = (index) => {
     if (selectedAnswer !== null) return;
@@ -63,6 +125,12 @@ export default function QuizEngine({ quiz }) {
     return 'Jangan menyerah! Pelajari kembali materinya dan coba lagi. Kamu pasti bisa! 🔥';
   };
 
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const optionLetters = ['A', 'B', 'C', 'D'];
 
   // ===== START SCREEN =====
@@ -83,9 +151,27 @@ export default function QuizEngine({ quiz }) {
             <div className="label">Tingkat</div>
           </div>
           <div className="quiz-info-item">
-            <div className="number">{totalQuestions * 2}</div>
-            <div className="label">Menit</div>
+            <div className="number">{totalQuestions} Menit</div>
+            <div className="label">Batas Waktu</div>
           </div>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '12px 16px',
+          background: 'rgba(239, 68, 68, 0.08)',
+          border: '1px solid rgba(239, 68, 68, 0.2)',
+          borderRadius: 'var(--radius-md)',
+          color: 'var(--danger)',
+          fontSize: 'var(--fs-small)',
+          fontWeight: 500,
+          marginBottom: '24px',
+          textAlign: 'left'
+        }}>
+          <AlertTriangle size={20} style={{ flexShrink: 0 }} />
+          <span>Aturan Ketat: Kuis menggunakan timer berjalan. Selama kuis berlangsung, Anda tidak diizinkan meninggalkan halaman atau menutup tab tanpa menyelesaikan kuis.</span>
         </div>
 
         <button className="btn btn-primary btn-lg" onClick={handleStart}>
@@ -143,8 +229,41 @@ export default function QuizEngine({ quiz }) {
   }
 
   // ===== PLAYING SCREEN =====
+  const timeWarning = timeLeft < 30; // Warn if less than 30s
+
   return (
     <div>
+      {/* Strict Countdown Timer Banner */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        background: timeWarning ? 'var(--danger)' : 'var(--primary-dark)',
+        color: '#FFFFFF',
+        padding: '12px 20px',
+        borderRadius: 'var(--radius-md)',
+        marginBottom: '16px',
+        boxShadow: 'var(--shadow-sm)',
+        transition: 'background-color 0.3s ease',
+        fontWeight: 600
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: 'var(--fs-small)' }}>
+          <Clock size={16} />
+          <span>SISA WAKTU MENGERJAKAN:</span>
+        </div>
+        <span style={{
+          fontSize: '1.1rem',
+          fontFamily: 'monospace',
+          background: 'rgba(0,0,0,0.25)',
+          padding: '4px 10px',
+          borderRadius: '4px',
+          letterSpacing: '1px',
+          animation: timeWarning ? 'pulse 1s infinite' : 'none'
+        }}>
+          {formatTime(timeLeft)}
+        </span>
+      </div>
+
       <div className="quiz-progress">
         <div className="quiz-progress-header">
           <span>Soal {currentIndex + 1} dari {totalQuestions}</span>
