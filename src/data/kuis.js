@@ -66,6 +66,18 @@ export const kuisList = [
         options: ['Amperemeter', 'Voltmeter', 'Ohmmeter', 'Wattmeter'],
         correctAnswer: 1,
         explanation: 'Voltmeter digunakan untuk mengukur beda potensial (tegangan) dan harus dipasang secara paralel terhadap komponen yang diukur.'
+      },
+      {
+        question: 'Jenis arus listrik yang dihasilkan oleh baterai, aki mobil, dan sel surya adalah...',
+        options: ['Arus Bolak-Balik (AC)', 'Arus Searah (DC)', 'Arus Induksi', 'Arus Statis'],
+        correctAnswer: 1,
+        explanation: 'Baterai, aki, dan sel surya menghasilkan Arus Searah (Direct Current / DC), di mana elektron mengalir searah dari kutub positif ke kutub negatif secara stabil.'
+      },
+      {
+        question: 'Alat ukur khusus yang digunakan untuk mendeteksi tingkat ketahanan isolasi (tahanan bocor) kabel instalasi listrik rumah adalah...',
+        options: ['AVO Meter', 'Megger (Insulation Tester)', 'Clamp Meter (Tang Ampere)', 'Phasotester (Tespen)'],
+        correctAnswer: 1,
+        explanation: 'Megger (Mega Ohmmeter / Insulation Tester) digunakan untuk mengukur nilai resistansi isolasi kabel listrik guna memastikan pembungkus kabel tidak bocor/korsleting.'
       }
     ]
   },

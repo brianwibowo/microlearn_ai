@@ -42,7 +42,24 @@ export const materiList = [
   <li><strong>Semikonduktor</strong> — hambatan sedang (silikon, germanium)</li>
 </ul>
 
-<blockquote>Analogi sederhana: Bayangkan air mengalir di pipa. Tegangan = tekanan air, Arus = debit air, Hambatan = ukuran pipa. Pipa kecil (hambatan besar) membuat air (arus) sulit mengalir.</blockquote>`
+<blockquote>Analogi sederhana: Bayangkan air mengalir di pipa. Tegangan = tekanan air, Arus = debit air, Hambatan = ukuran pipa. Pipa kecil (hambatan besar) membuat air (arus) sulit mengalir.</blockquote>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 1)</h4>
+  <p>Beda potensial listrik yang menyebabkan muatan listrik (elektron) mengalir melalui penghantar disebut...</p>
+  <details class="quiz-option-details">
+    <summary>A. Hambatan Listrik</summary>
+    <div class="quiz-answer wrong">❌ Salah. Hambatan adalah kemampuan bahan untuk menahan aliran arus (satuan: Ohm).</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. Arus Listrik</summary>
+    <div class="quiz-answer wrong">❌ Salah. Arus listrik adalah jumlah muatan listrik yang mengalir per satuan waktu (satuan: Ampere).</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. Tegangan Listrik</summary>
+    <div class="quiz-answer correct">✅ Benar! Tegangan (beda potensial) adalah energi yang mendorong elektron untuk mengalir di sepanjang sirkuit.</div>
+  </details>
+</div>`
       },
       {
         id: 'bab-2',
@@ -112,7 +129,24 @@ t = Waktu (jam)
 Contoh: Lampu 100W menyala 10 jam
 W = 100 × 10 = 1.000 Wh = 1 kWh</code></pre>
 
-<blockquote>1 kWh sering disebut "1 unit listrik" di tagihan PLN. Jika tarif listrik Rp1.500/kWh, maka lampu 100W yang menyala 10 jam menghabiskan biaya Rp1.500.</blockquote>`
+<blockquote>1 kWh sering disebut "1 unit listrik" di tagihan PLN. Jika tarif listrik Rp1.500/kWh, maka lampu 100W yang menyala 10 jam menghabiskan biaya Rp1.500.</blockquote>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 2)</h4>
+  <p>Sebuah setrika listrik dipasang pada tegangan 220V dengan arus sebesar 2A. Berapakah daya listrik yang dikonsumsi setrika tersebut?</p>
+  <details class="quiz-option-details">
+    <summary>A. 110 Watt</summary>
+    <div class="quiz-answer wrong">❌ Salah. Rumus daya adalah P = V × I. Bukan V / I.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. 440 Watt</summary>
+    <div class="quiz-answer correct">✅ Benar! Daya listrik dihitung dengan P = V × I. Maka P = 220V × 2A = 440 Watt.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. 220 Watt</summary>
+    <div class="quiz-answer wrong">❌ Salah. Periksa kembali rumus daya listrik. P = V × I.</div>
+  </details>
+</div>`
       },
       {
         id: 'bab-3',
@@ -145,7 +179,144 @@ W = 100 × 10 = 1.000 Wh = 1 kWh</code></pre>
   <li><strong>MCB/Sekering</strong> → Rangkaian <strong>Seri</strong> (sebagai pengaman yang memutus arus jika berlebih)</li>
 </ul>
 
-<blockquote>Dalam instalasi penerangan rumah, lampu-lampu SELALU dipasang paralel agar bisa dinyalakan/dimatikan secara independen dan mendapat tegangan penuh 220V.</blockquote>`
+<blockquote>Dalam instalasi penerangan rumah, lampu-lampu SELALU dipasang paralel agar bisa dinyalakan/dimatikan secara independen dan mendapat tegangan penuh 220V.</blockquote>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 3)</h4>
+  <p>Jika tiga resistor masing-masing sebesar 10 Ω, 20 Ω, dan 30 Ω dihubungkan secara SERI, berapakah hambatan total penggantinya?</p>
+  <details class="quiz-option-details">
+    <summary>A. 60 Ohm</summary>
+    <div class="quiz-answer correct">✅ Benar! Pada rangkaian seri, hambatan total cukup dijumlahkan langsung: R total = R1 + R2 + R3 = 10 + 20 + 30 = 60 Ω.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. 5.45 Ohm</summary>
+    <div class="quiz-answer wrong">❌ Salah. Nilai ini jika resistor dirangkai secara paralel (1/R total = 1/10 + 1/20 + 1/30).</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. 30 Ohm</summary>
+    <div class="quiz-answer wrong">❌ Salah. Hambatan total seri pasti lebih besar dari hambatan terbesar di rangkaian.</div>
+  </details>
+</div>`
+      },
+      {
+        id: 'bab-4',
+        title: 'Jenis Arus Listrik: AC dan DC',
+        content: `<h2>Jenis Arus Listrik: AC dan DC</h2>
+<p>Berdasarkan arah alirannya, arus listrik dibagi menjadi dua jenis utama: <strong>Alternating Current (AC)</strong> dan <strong>Direct Current (DC)</strong>.</p>
+
+<h3>1. Arus Bolak-Balik (AC - Alternating Current)</h3>
+<p><strong>Arus AC</strong> adalah jenis arus listrik yang arah alirannya berubah-ubah secara periodik (bolak-balik). Tegangan dan arus AC berbentuk gelombang sinusoida.</p>
+<ul>
+  <li><strong>Arah Aliran</strong>: Bolak-balik secara teratur.</li>
+  <li><strong>Frekuensi</strong>: Diukur dalam Hertz (Hz). Di Indonesia (PLN), frekuensi arus AC adalah <strong>50 Hz</strong> (berarti arah arus bolak-balik 50 kali dalam satu detik).</li>
+  <li><strong>Sumber AC</strong>: Generator pembangkit listrik, stop kontak PLN di rumah (220V AC).</li>
+  <li><strong>Kelebihan</strong>: Mudah dinaikkan/diturunkan tegangannya menggunakan transformator (trafo) untuk transmisi jarak jauh.</li>
+</ul>
+
+<h3>2. Arus Searah (DC - Direct Current)</h3>
+<p><strong>Arus DC</strong> adalah jenis arus listrik yang arah alirannya hanya satu arah saja (konstan terhadap waktu).</p>
+<ul>
+  <li><strong>Arah Aliran</strong>: Searah dari kutub positif (+) ke kutub negatif (-).</li>
+  <li><strong>Frekuensi</strong>: Tidak memiliki frekuensi (0 Hz).</li>
+  <li><strong>Sumber DC</strong>: Baterai, Aki (Akumulator), Sel Surya (Solar Cell), dan adaptor/charger HP.</li>
+  <li><strong>Kelebihan</strong>: Sangat stabil, aman untuk komponen elektronik mikro (seperti komputer dan smartphone).</li>
+</ul>
+
+<h3>Perbandingan AC vs DC</h3>
+<table style="width:100%; border-collapse:collapse; margin: 16px 0; border: 1px solid var(--neutral-200);">
+  <thead>
+    <tr style="background-color: var(--primary-50); border-bottom: 2px solid var(--neutral-300);">
+      <th style="padding: 10px; text-align: left; border: 1px solid var(--neutral-200);">Karakteristik</th>
+      <th style="padding: 10px; text-align: left; border: 1px solid var(--neutral-200);">Arus AC (PLN)</th>
+      <th style="padding: 10px; text-align: left; border: 1px solid var(--neutral-200);">Arus DC (Baterai)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200); font-weight: 600;">Arah Arus</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">Bolak-balik (Dua arah)</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">Searah (Satu arah)</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200); font-weight: 600;">Frekuensi</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">50 Hz / 60 Hz</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">0 Hz (Konstan)</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200); font-weight: 600;">Penyimpanan</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">Tidak bisa disimpan langsung</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">Bisa disimpan dalam baterai</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200); font-weight: 600;">Penggunaan</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">Mesin cuci, AC, kulkas, lampu rumah</td>
+      <td style="padding: 10px; border: 1px solid var(--neutral-200);">HP, laptop, jam dinding, lampu senter</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 4)</h4>
+  <p>Manakah di antara perangkat berikut ini yang memanfaatkan sumber Arus Searah (DC)?</p>
+  <details class="quiz-option-details">
+    <summary>A. Laptop dan Smartphone</summary>
+    <div class="quiz-answer correct">✅ Benar! Komputer, laptop, dan smartphone menggunakan baterai internal yang menghasilkan arus DC (searah) yang stabil. Charger/adaptor berfungsi mengubah AC dari PLN menjadi DC.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. Kulkas dan Pompa Air Rumah</summary>
+    <div class="quiz-answer wrong">❌ Salah. Kulkas dan pompa air langsung dicolokkan ke stop kontak PLN yang menyediakan Arus AC (bolak-balik).</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. Pendingin Ruangan (AC)</summary>
+    <div class="quiz-answer wrong">❌ Salah. Pendingin ruangan (AC) menggunakan motor kompresor AC berdaya besar yang membutuhkan tegangan PLN 220V AC.</div>
+  </details>
+</div>`
+      },
+      {
+        id: 'bab-5',
+        title: 'Alat Ukur Besaran Listrik',
+        content: `<h2>Alat Ukur Besaran Listrik</h2>
+<p>Dalam instalasi listrik, kita membutuhkan alat ukur untuk mengetahui besaran tegangan, arus, hambatan, serta kondisi keamanan instalasi.</p>
+
+<h3>1. Multimeter (AVO Meter)</h3>
+<p><strong>Multimeter</strong> adalah alat ukur serbaguna yang dapat mengukur tiga besaran sekaligus: <strong>Ampere (Arus)</strong>, <strong>Volt (Tegangan)</strong>, dan <strong>Ohm (Hambatan)</strong>.</p>
+<ul>
+  <li><strong>Pengukuran Seri</strong>: Mengukur arus (Ampere). Kabel multimeter memotong jalur aliran listrik.</li>
+  <li><strong>Pengukuran Paralel</strong>: Mengukur tegangan (Volt). Probe multimeter dicolokkan langsung ke terminal fasa dan netral.</li>
+  <li>Pastikan memutar <em>selector switch</em> ke posisi besaran yang benar sebelum mengukur agar alat tidak terbakar!</li>
+</ul>
+
+<h3>2. Tang Ampere (Clamp Meter)</h3>
+<p><strong>Tang Ampere</strong> digunakan khusus untuk mengukur arus listrik AC berdaya besar tanpa memotong/mengupas kabel.</p>
+<ul>
+  <li>Pengukurannya memanfaatkan medan elektromagnetik di sekitar kabel.</li>
+  <li>Cukup jepitkan rahang tang pada <strong>satu kabel penghantar saja</strong> (fasa atau netral, jangan keduanya sekaligus) untuk membaca arus yang lewat.</li>
+</ul>
+
+<h3>3. Megger (Insulation Tester)</h3>
+<p><strong>Megger</strong> (Mega Ohmmeter) digunakan khusus untuk mengukur hambatan isolasi kabel penghantar listrik.</p>
+<ul>
+  <li>Hambatan isolasi kabel yang baik minimal sebesar <strong>1.000 Ohm per 1 Volt tegangan kerja</strong>.</li>
+  <li>Untuk tegangan 220V, hambatan isolasi minimal adalah 0,22 MegaOhm (atau disarankan minimal 1 MegaOhm sesuai standar PUIL 2011).</li>
+  <li>Alat ini sangat penting untuk mendeteksi apakah pembungkus kabel instalasi mengalami kebocoran yang bisa memicu hubungan singkat (korsleting) atau bahaya sengatan listrik.</li>
+</ul>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 5)</h4>
+  <p>Alat ukur manakah yang paling tepat digunakan untuk mengukur kebocoran lapisan isolator pada kabel instalasi listrik rumah?</p>
+  <details class="quiz-option-details">
+    <summary>A. Multimeter pada mode Voltmeter</summary>
+    <div class="quiz-answer wrong">❌ Salah. Voltmeter hanya mengukur beda potensial/tegangan, bukan hambatan isolasi kabel.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. Tang Ampere (Clamp Meter)</summary>
+    <div class="quiz-answer wrong">❌ Salah. Tang Ampere digunakan untuk mengukur arus beban mengalir pada kabel secara induktif.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. Megger (Insulation Tester)</summary>
+    <div class="quiz-answer correct">✅ Benar! Megger menyuntikkan tegangan DC tinggi (seperti 500V atau 1000V) untuk mengukur resistensi/hambatan isolator kabel dalam satuan MegaOhm (MΩ).</div>
+  </details>
+</div>`
       }
     ]
   },

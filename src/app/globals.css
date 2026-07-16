@@ -2574,3 +2574,89 @@ h3 { font-size: var(--fs-h3); }
   font-weight: 500;
 }
 
+/* ========== MINI QUIZ INSIDE CHAPTERS ========== */
+.mini-quiz-box {
+  margin-top: var(--space-2xl);
+  padding: var(--space-xl);
+  background: var(--primary-50);
+  border: 2px dashed var(--primary-light);
+  border-radius: var(--radius-lg);
+}
+
+.mini-quiz-box h4 {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  color: var(--primary-dark);
+  font-size: var(--fs-h3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-quiz-box p {
+  color: var(--neutral-700);
+  font-weight: 500;
+  margin-bottom: var(--space-md);
+}
+
+.quiz-option-details {
+  background: var(--white);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.quiz-option-details[open] {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-option-details summary {
+  padding: var(--space-md);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--neutral-800);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.quiz-option-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.quiz-option-details summary::after {
+  content: '👉 Cek Jawaban';
+  font-size: var(--fs-tiny);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.quiz-option-details[open] summary::after {
+  content: '📖 Sembunyikan';
+  color: var(--neutral-400);
+}
+
+.quiz-answer {
+  padding: var(--space-md);
+  font-size: var(--fs-small);
+  border-top: 1px solid var(--neutral-100);
+  line-height: 1.5;
+}
+
+.quiz-answer.correct {
+  background: var(--secondary-light);
+  color: var(--secondary-dark);
+}
+
+.quiz-answer.wrong {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+
