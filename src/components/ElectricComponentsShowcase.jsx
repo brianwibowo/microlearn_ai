@@ -239,13 +239,16 @@ export default function ElectricComponentsShowcase() {
 
         {/* Category Filters */}
         <ScrollReveal delay={0.1}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '12px',
-            marginBottom: '32px',
-            flexWrap: 'wrap'
-          }}>
+          <div
+            className="components-filter-tabs"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '12px',
+              marginBottom: '32px',
+              flexWrap: 'wrap'
+            }}
+          >
             {[
               { id: 'all', label: 'Semua Alat', icon: Layers },
               { id: 'pengaman', label: 'Pengaman Rangkaian', icon: Shield },
@@ -290,7 +293,7 @@ export default function ElectricComponentsShowcase() {
         </ScrollReveal>
 
         {/* Main Grid + Detail Layout */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+        <div className="components-showcase-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '32px' }}>
           
           {/* Components Grid (Left Column) */}
           <ScrollReveal direction="left" distance="40px">
@@ -334,7 +337,7 @@ export default function ElectricComponentsShowcase() {
 
           {/* Component Details Screen (Right Column) */}
           <ScrollReveal direction="right" distance="40px">
-            <div style={{
+            <div className="component-detail-card" style={{
               background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
               borderRadius: 'var(--radius-xl)',
               border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -423,6 +426,34 @@ export default function ElectricComponentsShowcase() {
 
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .components-filter-tabs {
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
+            flex-wrap: nowrap !important;
+            padding-bottom: 8px !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .components-filter-tabs::-webkit-scrollbar {
+            display: none;
+          }
+          .components-filter-tabs button {
+            flex-shrink: 0;
+            min-height: 42px;
+          }
+          .components-showcase-layout {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          .component-detail-card {
+            padding: 20px !important;
+            border-radius: 16px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

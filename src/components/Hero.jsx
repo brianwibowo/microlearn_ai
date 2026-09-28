@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { ArrowRight, BookOpen, Award, Zap, Bot, CircuitBoard, Lightbulb, Shield } from 'lucide-react';
 
 const TYPING_TEXTS = [
+  'Dasar Teori Kelistrikan',
   'Hukum Ohm & Rangkaian Listrik',
+  'Dasar Elektronika & Komponen',
   'Instalasi Saklar & Lampu',
   'Perhitungan Daya Listrik',
   'Keselamatan Kerja K3',
@@ -122,8 +124,8 @@ export default function Hero() {
               <span className="hero-cursor" style={{ color: '#38BDF8' }}>|</span>
             </div>
             <p className="hero-description">
-              Platform microlearning untuk siswa SMK Negeri Semarang — pelajari instalasi penerangan listrik
-              dengan modul interaktif, kuis adaptif, dan chatbot AI yang siap bantu 24/7.
+              Platform microlearning untuk siswa SMK Negeri Semarang — pelajari dasar teori kelistrikan,
+              instalasi penerangan, dan elektronika dasar dengan modul interaktif, kuis adaptif, dan chatbot AI yang siap bantu 24/7.
             </p>
             <div className="hero-actions">
               <Link
@@ -144,14 +146,14 @@ export default function Hero() {
             </div>
             <div className="hero-stats animate-fade-in stagger-2">
               <div className="hero-stat">
-                <div className="hero-stat-number">7+</div>
+                <div className="hero-stat-number">8</div>
                 <div className="hero-stat-label">Modul Materi</div>
               </div>
-              <div className="hero-stat" style={{ borderLeft: '2px solid var(--neutral-200)', paddingLeft: '24px' }}>
-                <div className="hero-stat-number">40+</div>
+              <div className="hero-stat hero-stat-divider">
+                <div className="hero-stat-number">96</div>
                 <div className="hero-stat-label">Soal Latihan</div>
               </div>
-              <div className="hero-stat" style={{ borderLeft: '2px solid var(--neutral-200)', paddingLeft: '24px' }}>
+              <div className="hero-stat hero-stat-divider">
                 <div className="hero-stat-number">24/7</div>
                 <div className="hero-stat-label">Asisten AI</div>
               </div>

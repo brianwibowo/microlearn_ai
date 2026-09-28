@@ -14,6 +14,7 @@ export default function InteractiveCircuit() {
 
   return (
     <div
+      className="interactive-circuit-card"
       style={{
         background: 'rgba(30, 41, 59, 0.85)',
         backdropFilter: 'blur(20px)',

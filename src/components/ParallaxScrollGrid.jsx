@@ -86,94 +86,112 @@ export default function ParallaxScrollGrid({ items }) {
   });
 
   return (
-    <div
-      ref={containerRef}
-      className="parallax-grid-container"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '28px',
-        width: '100%',
-        position: 'relative',
-        padding: '100px 0',
-        minHeight: '700px',
-        overflow: 'hidden', // Potong luapan agar tetap di dalam section
-      }}
-    >
-      {/* Kolom 1 (Kiri) */}
+    <div ref={containerRef} className="parallax-grid-wrapper" style={{ width: '100%', position: 'relative' }}>
+      {/* Desktop 3-column parallax grid */}
       <div
-        className="parallax-col"
+        className="parallax-grid-container"
         style={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
           gap: '28px',
-          transform: `translate3d(0, ${translations.col1}px, 0)`,
-          willChange: 'transform',
+          width: '100%',
+          position: 'relative',
+          padding: '80px 0',
+          minHeight: '700px',
+          overflow: 'hidden',
         }}
       >
-        {col1.map((item, idx) => (
-          <MagneticTilt key={idx} intensity={8} scale={1.03}>
-            {item}
-          </MagneticTilt>
-        ))}
+        {/* Kolom 1 (Kiri) */}
+        <div
+          className="parallax-col"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '28px',
+            transform: `translate3d(0, ${translations.col1}px, 0)`,
+            willChange: 'transform',
+          }}
+        >
+          {col1.map((item, idx) => (
+            <MagneticTilt key={idx} intensity={8} scale={1.03}>
+              {item}
+            </MagneticTilt>
+          ))}
+        </div>
+
+        {/* Kolom 2 (Tengah) */}
+        <div
+          className="parallax-col"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '28px',
+            transform: `translate3d(0, ${translations.col2}px, 0)`,
+            willChange: 'transform',
+            marginTop: '50px',
+          }}
+        >
+          {col2.map((item, idx) => (
+            <MagneticTilt key={idx} intensity={8} scale={1.03}>
+              {item}
+            </MagneticTilt>
+          ))}
+        </div>
+
+        {/* Kolom 3 (Kanan) */}
+        <div
+          className="parallax-col"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '28px',
+            transform: `translate3d(0, ${translations.col3}px, 0)`,
+            willChange: 'transform',
+          }}
+        >
+          {col3.map((item, idx) => (
+            <MagneticTilt key={idx} intensity={8} scale={1.03}>
+              {item}
+            </MagneticTilt>
+          ))}
+        </div>
       </div>
 
-      {/* Kolom 2 (Tengah) */}
-      <div
-        className="parallax-col"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '28px',
-          transform: `translate3d(0, ${translations.col2}px, 0)`,
-          willChange: 'transform',
-          marginTop: '50px', // Offset awal estetika kolom tengah
-        }}
-      >
-        {col2.map((item, idx) => (
-          <MagneticTilt key={idx} intensity={8} scale={1.03}>
+      {/* Mobile Sequential List (Urutan Alami 1 sampai 6) */}
+      <div className="parallax-mobile-grid">
+        {items.map((item, idx) => (
+          <div key={idx} className="parallax-mobile-item">
             {item}
-          </MagneticTilt>
-        ))}
-      </div>
-
-      {/* Kolom 3 (Kanan) */}
-      <div
-        className="parallax-col"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '28px',
-          transform: `translate3d(0, ${translations.col3}px, 0)`,
-          willChange: 'transform',
-        }}
-      >
-        {col3.map((item, idx) => (
-          <MagneticTilt key={idx} intensity={8} scale={1.03}>
-            {item}
-          </MagneticTilt>
+          </div>
         ))}
       </div>
 
       {/* CSS untuk responsivitas layar kecil */}
       <style jsx global>{`
+        .parallax-mobile-grid {
+          display: none;
+        }
+
         @media (max-width: 1024px) {
           .parallax-grid-container {
-            grid-template-columns: 1fr 1fr !important;
-            min-height: auto !important;
-            overflow: visible !important;
+            gap: 20px !important;
             padding: 40px 0 !important;
           }
-          .parallax-col {
-            transform: none !important;
-            margin-top: 0 !important;
-            gap: 20px !important;
-          }
         }
+
         @media (max-width: 768px) {
           .parallax-grid-container {
-            grid-template-columns: 1fr !important;
+            display: none !important;
+          }
+          .parallax-mobile-grid {
+            display: flex !important;
+            flex-direction: column !important;
             gap: 16px !important;
+            width: 100% !important;
+            padding: 16px 0 !important;
+          }
+          .parallax-mobile-item {
+            width: 100% !important;
           }
         }
       `}</style>

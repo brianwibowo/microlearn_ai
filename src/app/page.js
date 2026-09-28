@@ -45,56 +45,65 @@ export default function Home() {
 
   // Buat array card items (6 buah) untuk disalurkan ke ParallaxScrollGrid
   const gridItems = [
-    // 1. Materi Terstruktur
+    // 1. Materi Terstruktur -> Link ke /materi
     <FeatureCard
       key="feat-materi"
       icon={features[0].icon}
       title={features[0].title}
       description={features[0].description}
       colorClass={features[0].colorClass}
+      href="/materi"
+      actionText="Buka Modul Materi"
     />,
-    // 2. Lab Virtual Card (Custom Light Theme)
-    <div key="feat-lab" className="feature-card" style={{ height: '100%' }}>
-      <div className="feature-icon blue"><Cpu size={28} /></div>
-      <h3>Laboratorium Virtual</h3>
-      <p>Simulasikan sirkuit instalasi listrik fasa-netral secara dinamis langsung pada diagram sirkuit interaktif.</p>
-      <div style={{ marginTop: '16px', background: 'var(--primary-50)', padding: '10px', borderRadius: '8px', border: '1px dashed var(--primary-light)' }}>
-        <span style={{ fontSize: '10px', fontFamily: 'monospace', color: 'var(--primary)', fontWeight: 'bold' }}>⚡ VOLT: 220V | GRID: CONNECTED</span>
-      </div>
-    </div>,
-    // 3. Kuis Interaktif
+    // 2. Lab Virtual Card -> Link ke /materi
+    <FeatureCard
+      key="feat-lab"
+      icon={Cpu}
+      title="Laboratorium Virtual"
+      description="Simulasikan sirkuit instalasi listrik fasa-netral secara dinamis langsung pada diagram sirkuit interaktif."
+      colorClass="blue"
+      href="/materi"
+      actionText="Eksplorasi Lab Virtual"
+    />,
+    // 3. Kuis Interaktif -> Link ke /kuis
     <FeatureCard
       key="feat-kuis"
       icon={features[1].icon}
       title={features[1].title}
       description={features[1].description}
       colorClass={features[1].colorClass}
+      href="/kuis"
+      actionText="Mulai Latihan Kuis"
     />,
-    // 4. Asisten AI
+    // 4. Asisten AI -> Buka Chatbot Popup
     <FeatureCard
       key="feat-ai"
       icon={features[2].icon}
       title={features[2].title}
       description={features[2].description}
       colorClass={features[2].colorClass}
+      href="#chatbot"
+      actionText="Tanya AI Zeus Sekarang"
     />,
-    // 5. Standar PUIL 2011 Card (Custom Light Theme)
-    <div key="feat-puil" className="feature-card" style={{ height: '100%' }}>
-      <div className="feature-icon amber"><Award size={28} /></div>
-      <h3>Standar PUIL 2011</h3>
-      <p>Seluruh kurikulum dan modul pengawatan dirancang presisi sesuai regulasi Persyaratan Umum Instalasi Listrik.</p>
-      <div style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <span className="badge badge-primary" style={{ fontSize: '8px' }}>SNI REGULATED</span>
-        <span className="badge badge-accent" style={{ fontSize: '8px' }}>TITL FASE F</span>
-      </div>
-    </div>,
-    // 6. Fokus K3
+    // 5. Standar PUIL 2011 Card -> Link ke diagram instalasi
+    <FeatureCard
+      key="feat-puil"
+      icon={Award}
+      title="Standar PUIL 2011"
+      description="Seluruh kurikulum dan modul pengawatan dirancang presisi sesuai regulasi Persyaratan Umum Instalasi Listrik."
+      colorClass="amber"
+      href="/materi/diagram-instalasi"
+      actionText="Pelajari Standar PUIL"
+    />,
+    // 6. Fokus K3 -> Link ke keselamatan kerja
     <FeatureCard
       key="feat-k3"
       icon={features[3].icon}
       title={features[3].title}
       description={features[3].description}
       colorClass={features[3].colorClass}
+      href="/materi/keselamatan-kerja-listrik"
+      actionText="Buka Modul K3 Listrik"
     />,
   ];
 
@@ -113,7 +122,7 @@ export default function Home() {
               <p>Fitur penunjang belajar mandiri yang lengkap dirancang khusus untuk meningkatkan pemahaman siswa SMK.</p>
             </div>
           </ScrollReveal>
-          
+
           {/* Aceternity-style Parallax Scroll Grid */}
           <ParallaxScrollGrid items={gridItems} />
         </div>
@@ -158,7 +167,7 @@ export default function Home() {
               </ScrollReveal>
             ))}
           </div>
-          
+
           <ScrollReveal delay={0.3}>
             <div style={{ textAlign: 'center', marginTop: 'var(--space-2xl)' }}>
               <Link href="/materi" className="btn btn-secondary">
@@ -273,7 +282,7 @@ export default function Home() {
         <div className="container">
           <ScrollReveal direction="up" distance="50px">
             <div className="cta-box">
-              <h2>Siap Menguasai Instalasi Listrik?</h2>
+              <h2>Siap Menguasai Teori Kelistrikan?</h2>
               <p>
                 Segera mulai belajar mandiri secara terstruktur. Gunakan Asisten AI jika kamu menemukan teori atau gambar rangkaian yang membingungkan.
               </p>

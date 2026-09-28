@@ -15,7 +15,7 @@ export default function StickyScrollReveal() {
   const stepsData = [
     {
       title: '1. Pahami Teori & Modul',
-      description: 'Baca 7 modul terstruktur yang telah disesuaikan dengan standar regulasi PUIL 2011. Dilengkapi skema pengawatan fisik, instalasi saklar tunggal/seri, dan pedoman K3 keselamatan kerja.',
+      description: 'Pelajari 8 modul komprehensif yang telah disesuaikan dengan standar kurikulum SMK dan regulasi PUIL 2011. Dilengkapi diagram pengawatan fisik, instalasi saklar, hingga komponen elektronika dasar.',
       icon: BookOpen,
       bgColor: '#0B1329', // Deep navy
       gradient: 'linear-gradient(135deg, #1E3A8A 0%, #0B1329 100%)',
@@ -45,10 +45,10 @@ export default function StickyScrollReveal() {
 
   const handleScroll = (e) => {
     const container = e.currentTarget;
-    const scrollTop = container.scrollTop;
-    
+    const { scrollTop } = container;
+
     // Tinggi per-blok langkah di dalam container scroll
-    const blockHeight = 320; 
+    const blockHeight = 280; 
     
     // Hitung index aktif berdasarkan posisi scroll kontainer internal
     const index = Math.min(
@@ -58,6 +58,18 @@ export default function StickyScrollReveal() {
     
     if (index !== activeIndex) {
       setActiveIndex(index);
+    }
+  };
+
+  // Navigasi instan ke langkah tertentu (klik kartu atau pill)
+  const scrollToStep = (idx) => {
+    setActiveIndex(idx);
+    if (containerRef.current) {
+      const blockHeight = 280;
+      containerRef.current.scrollTo({
+        top: idx * blockHeight,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -121,60 +133,136 @@ export default function StickyScrollReveal() {
   };
 
   return (
-    <div 
-      ref={containerRef}
-      onScroll={handleScroll}
-      className="sticky-scroll-container"
-      style={{
-        height: '450px',
-        overflowY: 'auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        position: 'relative',
-        borderRadius: '16px',
-        padding: '40px',
-        backgroundColor: stepsData[activeIndex].bgColor,
-        transition: 'background-color 0.5s ease',
-        scrollbarWidth: 'none', // Sembunyikan scrollbar Firefox
-        msOverflowStyle: 'none', // Sembunyikan scrollbar IE/Edge
-        border: '1px solid rgba(255,255,255,0.06)',
-      }}
-    >
-      {/* Kolom Kiri: Teks Langkah Belajar */}
-      <div 
-        className="sticky-scroll-text-col"
+    <div className="sticky-scroll-outer-wrapper" style={{ width: '100%', position: 'relative' }}>
+      {/* Quick Navigation Pills Tab (Bisa Langsung Diklik ke Tahap 1, 2, 3, 4) */}
+      <div
+        className="sticky-scroll-pills-bar"
         style={{
-          width: '50%',
           display: 'flex',
-          flexDirection: 'column',
+          gap: '10px',
+          marginBottom: '16px',
+          overflowX: 'auto',
+          paddingBottom: '4px',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
         }}
       >
         {stepsData.map((step, idx) => {
+          const Icon = step.icon;
           const isActive = idx === activeIndex;
           return (
-            <div
+            <button
               key={idx}
+              onClick={() => scrollToStep(idx)}
+              className={`sticky-nav-pill ${isActive ? 'active' : ''}`}
               style={{
-                height: '320px', // Pas dengan tinggi pergeseran blockHeight
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                opacity: isActive ? 1 : 0.3,
-                transition: 'opacity 0.3s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '10px 18px',
+                borderRadius: '30px',
+                border: '1.5px solid',
+                borderColor: isActive ? 'var(--secondary)' : 'rgba(255, 255, 255, 0.12)',
+                background: isActive ? 'rgba(56, 189, 248, 0.2)' : 'rgba(15, 23, 42, 0.65)',
+                color: isActive ? '#FFFFFF' : '#94A3B8',
+                fontSize: '13px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.25s ease',
+                boxShadow: isActive ? '0 0 16px rgba(56, 189, 248, 0.35)' : 'none',
               }}
             >
-              <h3 style={{ color: '#fff', fontSize: '1.4rem', fontWeight: '600', marginBottom: '16px' }}>
-                {step.title}
-              </h3>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: '1.7', margin: 0, maxWidth: '90%' }}>
-                {step.description}
-              </p>
-            </div>
+              <Icon size={15} style={{ color: isActive ? 'var(--secondary)' : '#94A3B8' }} />
+              <span>{step.title.split('. ')[1] || step.title}</span>
+            </button>
           );
         })}
-        {/* Spacer bawah agar langkah terakhir bisa di-scroll pas ke tengah */}
-        <div style={{ height: '120px', shrink: 0 }} />
       </div>
+
+      <div 
+        ref={containerRef}
+        onScroll={handleScroll}
+        className="sticky-scroll-container"
+        style={{
+          height: '450px',
+          overflowY: 'auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          position: 'relative',
+          borderRadius: '16px',
+          padding: '40px',
+          backgroundColor: stepsData[activeIndex].bgColor,
+          transition: 'background-color 0.5s ease',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          border: '1px solid rgba(255,255,255,0.08)',
+          scrollSnapType: 'y proximity',
+        }}
+      >
+        {/* Kolom Kiri: Teks Langkah Belajar */}
+        <div 
+          className="sticky-scroll-text-col"
+          style={{
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {stepsData.map((step, idx) => {
+            const isActive = idx === activeIndex;
+            const Icon = step.icon;
+            return (
+              <div
+                key={idx}
+                className="sticky-step-card"
+                onClick={() => scrollToStep(idx)}
+                title={`Klik untuk melihat ${step.title}`}
+                style={{
+                  height: '280px',
+                  minHeight: '280px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  opacity: isActive ? 1 : 0.35,
+                  cursor: 'pointer',
+                  transition: 'opacity 0.3s ease, transform 0.2s ease',
+                  padding: '12px 0',
+                  scrollSnapAlign: 'start',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    background: isActive ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255, 255, 255, 0.08)',
+                    border: isActive ? '1px solid var(--secondary)' : '1px solid rgba(255, 255, 255, 0.1)',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    color: isActive ? 'var(--secondary)' : '#94A3B8',
+                    fontWeight: 600,
+                    width: 'fit-content',
+                    marginBottom: '12px',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <Icon size={14} />
+                  <span>Tahap 0{idx + 1}</span>
+                </div>
+                <h3 style={{ color: '#fff', fontSize: '1.4rem', fontWeight: '600', marginBottom: '16px' }}>
+                  {step.title}
+                </h3>
+                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: '1.7', margin: 0, maxWidth: '90%' }}>
+                  {step.description}
+                </p>
+              </div>
+            );
+          })}
+          {/* Spacer bawah yang presisi 90px agar Tahap 4 pas berhenti sempurna tanpa overshoot */}
+          <div className="sticky-scroll-bottom-spacer" style={{ height: '90px', flexShrink: 0 }} />
+        </div>
 
       {/* Kolom Kanan: Card Sticky Visual yang Mengikuti Indeks */}
       <div 
@@ -257,32 +345,53 @@ export default function StickyScrollReveal() {
           animation: circuitLoop 3s linear infinite;
         }
 
-        /* Fallback Mobile: Jadikan grid biasa pada layar kecil */
+        /* Fallback Mobile: Jadikan kartu interaktif responsif pada layar kecil */
         @media (max-width: 900px) {
           .sticky-scroll-container {
             height: auto !important;
             overflow-y: visible !important;
             display: block !important;
-            padding: 24px !important;
-            background-color: #1E293B !important;
+            padding: 16px !important;
+            background: #0B1329 !important;
+            border-radius: 16px !important;
+            scroll-snap-type: none !important;
+          }
+          .sticky-scroll-bottom-spacer {
+            display: none !important;
           }
           .sticky-scroll-text-col {
             width: 100% !important;
           }
-          .sticky-scroll-text-col > div {
+          .sticky-scroll-text-col > div.sticky-step-card {
             height: auto !important;
             opacity: 1 !important;
-            margin-bottom: 32px !important;
-            background: rgba(255, 255, 255, 0.03) !important;
+            margin-bottom: 16px !important;
+            background: rgba(30, 41, 59, 0.7) !important;
             padding: 20px !important;
-            border-radius: 12px !important;
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 14px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+          }
+          .sticky-scroll-text-col > div.sticky-step-card h3 {
+            font-size: 1.15rem !important;
+            margin-bottom: 10px !important;
+          }
+          .sticky-scroll-text-col > div.sticky-step-card p {
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
+            max-width: 100% !important;
           }
           .sticky-scroll-visual-col {
             display: none !important;
           }
         }
+
+        .sticky-step-card:hover {
+          opacity: 0.85 !important;
+          transform: translateX(4px);
+        }
       `}</style>
+      </div>
     </div>
   );
 }

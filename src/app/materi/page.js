@@ -13,6 +13,7 @@ export default function MateriPage() {
   const categories = [
     { id: 'semua', label: 'Semua Topik' },
     { id: 'dasar', label: 'Teori Dasar Kelistrikan' },
+    { id: 'elektronika', label: 'Elektronika Dasar' },
     { id: 'instalasi', label: 'Instalasi & Pengawatan' },
     { id: 'keamanan', label: 'Keamanan & Perhitungan' },
   ];
@@ -20,6 +21,7 @@ export default function MateriPage() {
   // Helper to categorize slugs
   const getCategoryForSlug = (slug) => {
     if (slug === 'dasar-kelistrikan' || slug === 'jenis-lampu') return 'dasar';
+    if (slug === 'dasar-elektronika') return 'elektronika';
     if (slug === 'komponen-instalasi' || slug === 'instalasi-saklar-lampu' || slug === 'diagram-instalasi') return 'instalasi';
     if (slug === 'keselamatan-kerja-listrik' || slug === 'perhitungan-instalasi') return 'keamanan';
     return 'dasar';
@@ -42,7 +44,7 @@ export default function MateriPage() {
       <header className="page-header">
         <div className="container">
           <span className="section-label">Modul Belajar</span>
-          <h1>Materi Instalasi Penerangan Listrik</h1>
+          <h1>Materi Dasar Teknik Kelistrikan</h1>
           <p>Pelajari konsep kelistrikan, diagram instalasi, komponen kelistrikan, hingga keselamatan kerja K3.</p>
         </div>
       </header>

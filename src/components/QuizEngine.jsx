@@ -135,6 +135,10 @@ export default function QuizEngine({ quiz }) {
 
   // ===== START SCREEN =====
   if (state === 'idle') {
+    const easyCount = quiz.questions.filter((q) => q.level === 'Mudah').length;
+    const mediumCount = quiz.questions.filter((q) => q.level === 'Sedang').length;
+    const hardCount = quiz.questions.filter((q) => q.level === 'Sulit').length;
+
     return (
       <div className="quiz-start">
         <div style={{ fontSize: '3rem', marginBottom: '16px' }}>⚡</div>
@@ -144,17 +148,38 @@ export default function QuizEngine({ quiz }) {
         <div className="quiz-info-grid">
           <div className="quiz-info-item">
             <div className="number">{totalQuestions}</div>
-            <div className="label">Soal</div>
+            <div className="label">Total Soal</div>
           </div>
           <div className="quiz-info-item">
-            <div className="number">{quiz.difficulty}</div>
-            <div className="label">Tingkat</div>
+            <div className="number" style={{ fontSize: '1.1rem', lineHeight: '1.3' }}>Proporsional</div>
+            <div className="label">Tingkat Kesulitan</div>
           </div>
           <div className="quiz-info-item">
             <div className="number">{totalQuestions} Menit</div>
             <div className="label">Batas Waktu</div>
           </div>
         </div>
+
+        {/* Proportion Breakdown */}
+        {(easyCount > 0 || mediumCount > 0 || hardCount > 0) && (
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '10px',
+            flexWrap: 'wrap',
+            margin: '16px 0 20px 0',
+            padding: '12px 18px',
+            background: 'var(--neutral-100)',
+            borderRadius: 'var(--radius-md)',
+            fontSize: 'var(--fs-small)'
+          }}>
+            <span style={{ fontWeight: 600, color: 'var(--neutral-700)' }}>Proporsi Tingkat Soal:</span>
+            <span className="badge badge-secondary" style={{ padding: '4px 10px' }}>🟢 Mudah: {easyCount}</span>
+            <span className="badge badge-accent" style={{ padding: '4px 10px' }}>🟡 Sedang: {mediumCount}</span>
+            <span className="badge badge-danger" style={{ padding: '4px 10px' }}>🔴 Sulit (HOTS): {hardCount}</span>
+          </div>
+        )}
 
         <div style={{
           display: 'flex',
@@ -265,7 +290,7 @@ export default function QuizEngine({ quiz }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: 'var(--fs-small)' }}>
           <Clock size={16} />
-          <span>SISA WAKTU MENGERJAKAN:</span>
+          <span>Sisa Waktu:</span>
         </div>
         <span style={{
           fontSize: '1.1rem',
@@ -294,8 +319,16 @@ export default function QuizEngine({ quiz }) {
       </div>
 
       <div className="quiz-question-card">
-        <div className="quiz-question-number">
-          Soal {currentIndex + 1}
+        <div className="quiz-question-number" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span>Soal {currentIndex + 1} dari {totalQuestions}</span>
+          {currentQuestion.level && (
+            <span className={`badge ${
+              currentQuestion.level === 'Mudah' ? 'badge-secondary' :
+              currentQuestion.level === 'Sedang' ? 'badge-accent' : 'badge-danger'
+            }`} style={{ fontSize: '0.75rem', padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 600 }}>
+              Tingkat: {currentQuestion.level}
+            </span>
+          )}
         </div>
         <div className="quiz-question-text">
           {currentQuestion.question}

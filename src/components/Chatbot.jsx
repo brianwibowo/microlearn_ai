@@ -32,7 +32,7 @@ export default function Chatbot() {
         parts: [
           {
             type: 'text',
-            text: 'Halo! 👋 Saya **MicroLearn AI Assistant**, asisten belajar Instalasi Penerangan Listrik kamu.\n\nSaya bisa bantu:\n- Menjelaskan materi kelistrikan\n- Memberikan contoh soal & pembahasan\n- Menjawab pertanyaan seputar instalasi listrik\n\nAda yang bisa saya bantu? ⚡',
+            text: 'Halo! ⚡ Saya **MicroLearn AI Assistant** (Zeus), asisten belajar cerdasmu untuk materi **Dasar Teori Kelistrikan**, **Instalasi Penerangan**, dan **Elektronika Dasar**.\n\nSaya siap bantu kamu:\n- ⚡ Memahami konsep teori kelistrikan, Hukum Ohm, daya, & rumus listrik\n- 🔌 Penjelasan komponen elektronika (komponen pasif/aktif, transistor, IC, sensor LDR, relay)\n- 💡 Pengawatan instalasi saklar, lampu, panel PHB, & standar PUIL 2011\n- 📝 Contoh soal, pembahasan kuis, dan konsultasi skema diagram\n\nAda materi atau rumus yang ingin kamu tanyakan sekarang? 🚀',
           },
         ],
       },
@@ -47,6 +47,40 @@ export default function Chatbot() {
     hasMounted.current = true;
     const timer = setTimeout(() => setShowSneakPeek(true), 500);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Listen to open-chatbot event from cards/buttons and links
+  useEffect(() => {
+    const handleOpenChat = () => {
+      setIsOpen(true);
+      setShowSneakPeek(false);
+    };
+
+    const handleDocumentClick = (e) => {
+      const anchor = e.target.closest('a[href="#chatbot"], a[href="#chat"]');
+      if (anchor) {
+        e.preventDefault();
+        setIsOpen(true);
+        setShowSneakPeek(false);
+      }
+    };
+
+    const handleHash = () => {
+      if (window.location.hash === '#chatbot' || window.location.hash === '#chat') {
+        setIsOpen(true);
+        setShowSneakPeek(false);
+      }
+    };
+
+    window.addEventListener('open-chatbot', handleOpenChat);
+    document.addEventListener('click', handleDocumentClick);
+    window.addEventListener('hashchange', handleHash);
+
+    return () => {
+      window.removeEventListener('open-chatbot', handleOpenChat);
+      document.removeEventListener('click', handleDocumentClick);
+      window.removeEventListener('hashchange', handleHash);
+    };
   }, []);
 
   // Auto-scroll to bottom
@@ -104,6 +138,7 @@ export default function Chatbot() {
       {/* Floating trigger button + Sneak Peek */}
       {!isOpen && (
         <div
+          className="chatbot-floating-wrapper"
           style={{
             position: 'fixed',
             bottom: 'var(--space-lg)',
@@ -117,7 +152,7 @@ export default function Chatbot() {
           {/* Sneak peek bubble */}
           {showSneakPeek && (
             <div
-              className="animate-fade-in"
+              className="chatbot-sneakpeek-bubble animate-fade-in"
               style={{
                 background: 'var(--white)',
                 border: '1px solid var(--neutral-200)',

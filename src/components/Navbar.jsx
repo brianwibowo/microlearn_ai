@@ -32,10 +32,21 @@ export default function Navbar() {
     };
   }, []);
 
-  // Close mobile menu on route change
+  // Close mobile menu on route change & prevent body scroll
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   return (
     <>
@@ -109,6 +120,7 @@ export default function Navbar() {
             className={`navbar-hamburger ${mobileOpen ? 'open' : ''}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <span />
             <span />
@@ -134,6 +146,15 @@ export default function Navbar() {
         />
       </nav>
 
+      {/* Backdrop overlay for mobile menu */}
+      {mobileOpen && (
+        <div
+          className="mobile-menu-backdrop"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
         {/* Mobile Telemetry */}
         <div 
@@ -144,8 +165,8 @@ export default function Navbar() {
             gap: '12px',
             background: 'rgba(15, 23, 42, 0.05)',
             borderRadius: '12px',
-            padding: '10px',
-            fontSize: '11px',
+            padding: '12px',
+            fontSize: '12px',
             fontFamily: 'monospace',
             fontWeight: 'bold',
             color: 'var(--neutral-800)',
@@ -153,24 +174,32 @@ export default function Navbar() {
             width: '100%'
           }}
         >
-          <span style={{ color: '#10B981', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            ● LIVE GRID
+          <span style={{ color: '#10B981', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            ● GRID AKTIF
           </span>
           <span>{voltage} V</span>
           <span>{frequency} Hz</span>
         </div>
 
-        {NAV_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
-          >
-            {link.label}
-          </Link>
-        ))}
-        <Link href="/materi" className="btn btn-primary" style={{ marginTop: '16px', width: '100%' }}>
-          Mulai Belajar
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%' }}>
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <Link
+          href="/materi"
+          className="btn btn-primary btn-lg"
+          style={{ marginTop: '20px', width: '100%', minHeight: '48px', justifyContent: 'center' }}
+          onClick={() => setMobileOpen(false)}
+        >
+          Mulai Belajar Sekarang
         </Link>
       </div>
 

@@ -4,7 +4,7 @@ export const materiList = [
   // ===== 1. Dasar Kelistrikan =====
   {
     slug: 'dasar-kelistrikan',
-    title: 'Dasar-Dasar Kelistrikan',
+    title: 'Dasar Teori Kelistrikan',
     subject: 'instalasi-penerangan',
     description: 'Memahami konsep arus listrik, tegangan, hambatan, dan Hukum Ohm sebagai fondasi instalasi penerangan.',
     thumbnail: '/images/materi-kelistrikan.webp',
@@ -326,7 +326,7 @@ W = 100 × 10 = 1.000 Wh = 1 kWh</code></pre>
     slug: 'komponen-instalasi',
     title: 'Komponen Instalasi Penerangan',
     subject: 'instalasi-penerangan',
-    description: 'Mengenal berbagai komponen yang digunakan dalam instalasi penerangan listrik: kabel, saklar, fitting, MCB, dan stop kontak.',
+    description: 'Mengenal komponen instalasi penerangan listrik: kabel, saklar, fitting, MCB',
     thumbnail: '/images/materi-komponen.webp',
     estimatedTime: '22 menit',
     videoUrl: 'https://www.youtube.com/embed/mhZWEgGvArk',
@@ -1022,15 +1022,256 @@ Biaya = 288 × 1.444,70 = Rp 416.074/bulan</code></pre>
 <blockquote>Cara termudah menghemat listrik: ganti semua lampu pijar/CFL ke LED, dan atur suhu AC di 25°C. Dua langkah ini saja bisa menghemat 20-40% tagihan listrik!</blockquote>`
       }
     ]
+  },
+
+  // ===== 8. Dasar Elektronika & Komponen =====
+  {
+    slug: 'dasar-elektronika',
+    title: 'Dasar-Dasar Elektronika & Komponen',
+    subject: 'elektronika-dasar',
+    description: 'Memahami komponen elektronika pasif (resistor, kapasitor, induktor), komponen aktif (dioda, transistor, IC), sensor, dan catu daya.',
+    thumbnail: '/images/materi-elektronika.webp',
+    estimatedTime: '24 menit',
+    videoUrl: 'https://www.youtube.com/embed/mhZWEgGvArk',
+    relatedQuiz: 'kuis-dasar-elektronika',
+    chapters: [
+      {
+        id: 'bab-1',
+        title: 'Komponen Pasif (Resistor, Kapasitor & Induktor)',
+        content: `<h2>Komponen Elektronika Pasif</h2>
+<p><strong>Komponen pasif</strong> adalah komponen elektronika yang dalam pengoperasiannya <em>tidak memerlukan sumber tegangan/arus eksternal</em> dan tidak dapat memperkuat sinyal listrik.</p>
+
+<h3>1. Resistor (Hambatan Listrik)</h3>
+<p>Resistor berfungsi untuk menghambat dan membatasi aliran arus listrik serta membagi tegangan dalam suatu rangkaian. Satuan resistansi adalah <strong>Ohm (Ω)</strong>.</p>
+<ul>
+  <li><strong>Resistor Tetap (Fixed Resistor)</strong> — Nilai hambatannya permanen, ditandai dengan gelang kode warna.</li>
+  <li><strong>Resistor Variabel (Potensiometer / Trimpot)</strong> — Hambatannya dapat diatur dengan memutar tuas atau baut penyetel.</li>
+</ul>
+
+<h4>Tabel Kode Warna Resistor (4 Gelang)</h4>
+<table style="width:100%; border-collapse:collapse; margin: 16px 0; border: 1px solid var(--neutral-200);">
+  <thead>
+    <tr style="background-color: var(--primary-50); border-bottom: 2px solid var(--neutral-300);">
+      <th style="padding: 8px; text-align: left; border: 1px solid var(--neutral-200);">Warna Gelang</th>
+      <th style="padding: 8px; text-align: center; border: 1px solid var(--neutral-200);">Gelang 1 (Angka)</th>
+      <th style="padding: 8px; text-align: center; border: 1px solid var(--neutral-200);">Gelang 2 (Angka)</th>
+      <th style="padding: 8px; text-align: center; border: 1px solid var(--neutral-200);">Gelang 3 (Pengali 10ⁿ)</th>
+      <th style="padding: 8px; text-align: center; border: 1px solid var(--neutral-200);">Gelang 4 (Toleransi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600;">Hitam</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">10⁰ (×1)</td><td style="text-align:center;">-</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#854D0E;">Cokelat</td><td style="text-align:center;">1</td><td style="text-align:center;">1</td><td style="text-align:center;">10¹ (×10)</td><td style="text-align:center;">±1%</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#DC2626;">Merah</td><td style="text-align:center;">2</td><td style="text-align:center;">2</td><td style="text-align:center;">10² (×100)</td><td style="text-align:center;">±2%</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#EA580C;">Oranye</td><td style="text-align:center;">3</td><td style="text-align:center;">3</td><td style="text-align:center;">10³ (×1.000)</td><td style="text-align:center;">-</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#CA8A04;">Kuning</td><td style="text-align:center;">4</td><td style="text-align:center;">4</td><td style="text-align:center;">10⁴ (×10.000)</td><td style="text-align:center;">-</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#16A34A;">Hijau</td><td style="text-align:center;">5</td><td style="text-align:center;">5</td><td style="text-align:center;">10⁵ (×100.000)</td><td style="text-align:center;">±0.5%</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#2563EB;">Biru</td><td style="text-align:center;">6</td><td style="text-align:center;">6</td><td style="text-align:center;">10⁶ (×1.000.000)</td><td style="text-align:center;">±0.25%</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#9333EA;">Ungu</td><td style="text-align:center;">7</td><td style="text-align:center;">7</td><td style="text-align:center;">10⁷</td><td style="text-align:center;">±0.1%</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#475569;">Abu-Abu</td><td style="text-align:center;">8</td><td style="text-align:center;">8</td><td style="text-align:center;">10⁸</td><td style="text-align:center;">-</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600;">Putih</td><td style="text-align:center;">9</td><td style="text-align:center;">9</td><td style="text-align:center;">10⁹</td><td style="text-align:center;">-</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#B45309;">Emas</td><td style="text-align:center;">-</td><td style="text-align:center;">-</td><td style="text-align:center;">×0.1</td><td style="text-align:center;">±5%</td></tr>
+    <tr><td style="padding: 6px; border: 1px solid var(--neutral-200); font-weight:600; color:#94A3B8;">Perak</td><td style="text-align:center;">-</td><td style="text-align:center;">-</td><td style="text-align:center;">×0.01</td><td style="text-align:center;">±10%</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Contoh Pembacaan Resistor:</strong></p>
+<pre><code>Warna: Cokelat - Hitam - Merah - Emas
+Gelang 1 (Cokelat) = 1
+Gelang 2 (Hitam)   = 0
+Gelang 3 (Merah)   = × 10² (100)
+Gelang 4 (Emas)    = Toleransi ±5%
+
+Nilai = 10 × 100 = 1.000 Ω = 1 kΩ (Toleransi ±5%)</code></pre>
+
+<h3>2. Kapasitor (Kondensator)</h3>
+<p>Kapasitor berfungsi untuk menyimpan muatan listrik sementara, menyaring (filter) riak tegangan pada power supply, serta meneruskan sinyal AC dan memblokir arus DC. Satuan kapasitansi adalah <strong>Farad (F)</strong> (umumnya dalam mikroFarad/µF, nanoFarad/nF, atau pikoFarad/pF).</p>
+<ul>
+  <li><strong>Kapasitor Polar (Elektrolit / Elco)</strong> — Memiliki kutub positif (+) dan negatif (-). Tidak boleh dipasang terbalik karena bisa meledak!</li>
+  <li><strong>Kapasitor Non-Polar (Keramik / Mylar)</strong> — Tidak memiliki kutub polaritas, bisa dipasang bolak-balik.</li>
+</ul>
+
+<h3>3. Induktor (Kumparan / Choke)</h3>
+<p>Induktor adalah lilitan kawat tembaga yang berfungsi menyimpan energi dalam bentuk <strong>medan magnetik</strong> saat dialiri arus listrik. Satuan induktansi adalah <strong>Henry (H)</strong>.</p>
+<ul>
+  <li>Digunakan pada trafo penurun tegangan, relay, filter frekuensi tinggi, dan ballast elektronik.</li>
+</ul>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 1)</h4>
+  <p>Sebuah resistor memiliki 4 gelang warna: Kuning - Ungu - Oranye - Emas. Berapakah nilai hambatan resistor tersebut?</p>
+  <details class="quiz-option-details">
+    <summary>A. 470 Ω ±5%</summary>
+    <div class="quiz-answer wrong">❌ Salah. Oranye adalah pengali 10³ (1.000), bukan 10¹ (10).</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. 47 kΩ ±5%</summary>
+    <div class="quiz-answer correct">✅ Benar! Kuning = 4, Ungu = 7, Oranye = ×1.000. Maka nilainya adalah 47.000 Ω = 47 kΩ dengan toleransi Emas ±5%.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. 4,7 kΩ ±5%</summary>
+    <div class="quiz-answer wrong">❌ Salah. Periksa kembali pengali gelang ke-3. Oranye = 10³ = 1.000.</div>
+  </details>
+</div>`
+      },
+      {
+        id: 'bab-2',
+        title: 'Komponen Aktif & Semikonduktor (Dioda, Transistor & IC)',
+        content: `<h2>Komponen Aktif & Bahan Semikonduktor</h2>
+<p><strong>Komponen aktif</strong> adalah komponen yang membutuhkan sumber tegangan/arus eksternal untuk beroperasi dan memiliki kemampuan untuk <em>mengendalikan arus, menyearahkan, serta memperkuat sinyal listrik</em>. Bahan utamanya terbuat dari semikonduktor (Silikon dan Germanium).</p>
+
+<h3>1. Dioda Semikonduktor</h3>
+<p>Dioda memiliki sambungan P-N (*P-N Junction*) dengan dua elektroda: <strong>Anoda (A / Positif)</strong> dan <strong>Katoda (K / Negatif)</strong>. Sifat utamanya adalah hanya mengalirkan arus satu arah saja.</p>
+<ul>
+  <li><strong>Bias Maju (Forward Bias)</strong> — Anoda diberi tegangan lebih positif dari Katoda (tegangan tembus silikon ≈ 0,7V), arus listrik akan mengalir.</li>
+  <li><strong>Bias Mundur (Reverse Bias)</strong> — Anoda diberi tegangan negatif, arus listrik diblokir (tertahan).</li>
+  <li><strong>Dioda Zener</strong> — Bekerja khusus pada daerah tegangan tembus mundur (*Breakdown Voltage*) untuk penstabil tegangan DC.</li>
+  <li><strong>LED (Light Emitting Diode)</strong> — Dioda yang memancarkan cahaya tampak saat dialiri arus maju.</li>
+  <li><strong>Dioda Bridge (Kiprok)</strong> — Rangkaian 4 dioda penyearah gelombang penuh dalam satu kemasan.</li>
+</ul>
+
+<h3>2. Transistor (BJT & MOSFET)</h3>
+<p>Transistor adalah komponen semikonduktor revolusioner yang berfungsi sebagai <strong>Saklar Elektronik Cepat (Switching)</strong> dan <strong>Penguat Sinyal (Amplifier)</strong>.</p>
+
+<h4>A. Transistor BJT (Bipolar Junction Transistor)</h4>
+<p>Memiliki 3 terminal kaki: <strong>Basis (B)</strong>, <strong>Kolektor (C)</strong>, dan <strong>Emitter (E)</strong>.</p>
+<ul>
+  <li><strong>Tipe NPN</strong> — Arus pemicu kecil yang masuk ke kaki Basis (B) akan membuka saluran arus besar dari Kolektor (C) menuju Emitter (E). Merupakan tipe paling banyak digunakan.</li>
+  <li><strong>Tipe PNP</strong> — Arus pemicu mengalir keluar dari Basis (B) ke ground untuk mengalirkan arus dari Emitter (E) ke Kolektor (C).</li>
+</ul>
+
+<h4>B. Transistor MOSFET (Field-Effect Transistor)</h4>
+<p>MOSFET dikendalikan oleh <strong>tegangan medan listrik</strong> pada gerbangnya (Gate), memiliki 3 kaki: <strong>Gate (G)</strong>, <strong>Drain (D)</strong>, dan <strong>Source (S)</strong>. Sangat efisien untuk saklar daya frekuensi tinggi dan inverter solar panel.</p>
+
+<h3>3. IC (Integrated Circuit / Rangkaian Terpadu)</h3>
+<p>IC adalah chip silikon mikro yang di dalamnya terintegrasi ribuan hingga jutaan transistor, dioda, dan resistor menjadi satu fungsi sirkuit lengkap.</p>
+<ul>
+  <li><strong>IC Regulator (Contoh: LM7805, LM7812)</strong> — Menghasilkan tegangan DC konstan (7805 = +5V, 7812 = +12V).</li>
+  <li><strong>IC Timer NE555</strong> — Menghasilkan pulsa detak, pewaktu lampu berkedip, dan osilator PWM.</li>
+  <li><strong>IC Op-Amp (Operational Amplifier, contoh: LM741 / LM358)</strong> — Penguat sinyal tegangan analog presisi tinggi untuk sensor.</li>
+</ul>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 2)</h4>
+  <p>Tiga kaki terminal pada Transistor Bipolar (BJT) berturut-turut adalah...</p>
+  <details class="quiz-option-details">
+    <summary>A. Gate, Drain, Source</summary>
+    <div class="quiz-answer wrong">❌ Salah. Gate, Drain, dan Source adalah terminal pada transistor MOSFET / FET.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. Anoda, Katoda, Gate</summary>
+    <div class="quiz-answer wrong">❌ Salah. Anoda dan Katoda adalah kaki Dioda, sedangkan Gate ada pada SCR / Thyristor.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. Basis, Kolektor, Emitter</summary>
+    <div class="quiz-answer correct">✅ Benar! Transistor BJT memiliki terminal Basis (pengendali), Kolektor (pengumpul arus), dan Emitter (pemancar arus).</div>
+  </details>
+</div>`
+      },
+      {
+        id: 'bab-3',
+        title: 'Rangkaian Catu Daya (Power Supply DC)',
+        content: `<h2>Rangkaian Catu Daya (DC Power Supply)</h2>
+<p>Sebagian besar rangkaian kontrol elektronik (seperti mikrokontroler, relay board, modul IoT) membutuhkan sumber <strong>Tegangan Searah (DC) yang stabil (5V / 12V / 24V)</strong>. Catu daya linear bertugas mengubah listrik 220V AC PLN menjadi tegangan DC yang aman.</p>
+
+<h3>4 Tahapan Utama Power Supply Linear</h3>
+<ol>
+  <li><strong>Transformator Penurun (Step-Down Transformer)</strong>
+    <br/>Menurunkan tegangan tinggi 220V AC menjadi tegangan rendah (misalnya 12V AC atau 15V AC) secara induktif tanpa mengubah bentuk gelombang sinusnya.
+  </li>
+  <li><strong>Penyearah (Rectifier)</strong>
+    <br/>Menggunakan <strong>Dioda Bridge</strong> untuk menyearahkan siklus gelombang bolak-balik AC menjadi gelombang DC satu arah (namun tegangannya masih berdenyut / <em>pulsating DC</em>).
+  </li>
+  <li><strong>Penyaring (Filter)</strong>
+    <br/>Menggunakan <strong>Kapasitor Elektrolit (Elco)</strong> berkapasitas besar (misal 1000 µF - 4700 µF) yang dipasang paralel untuk meratakan riak (<em>ripple</em>) denyut tegangan menjadi garis tegangan DC yang halus.
+  </li>
+  <li><strong>Regulator Tegangan (Voltage Regulator)</strong>
+    <br/>Menggunakan <strong>IC Seri 78xx</strong> (seperti IC 7805 untuk output +5V atau IC 7812 untuk output +12V) agar tegangan output selalu terkunci stabil pada nilai yang diinginkan meskipun tegangan input PLN atau beban berubah-ubah.
+  </li>
+</ol>
+
+<pre><code>Diagram Blok Catu Daya DC:
+[220V AC PLN] ──→ [Trafo Step-Down] ──→ [Dioda Bridge] ──→ [Filter Elco] ──→ [IC Regulator 7805] ──→ [Output 5V DC Stabil]</code></pre>
+
+<blockquote>Kapasitor keramik 100nF (0.1µF) sering dipasang di dekat pin output IC regulator untuk menghilangkan gangguan noise frekuensi tinggi.</blockquote>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 3)</h4>
+  <p>Komponen apakah yang bertugas meratakan riak tegangan (ripple) setelah melewati dioda penyearah pada rangkaian catu daya?</p>
+  <details class="quiz-option-details">
+    <summary>A. Resistor Shunt</summary>
+    <div class="quiz-answer wrong">❌ Salah. Resistor shunt digunakan untuk pembatas arus atau pengukuran beban.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. Kapasitor Elektrolit (Elco)</summary>
+    <div class="quiz-answer correct">✅ Benar! Kapasitor Elco menyimpan muatan saat tegangan puncak dan mengeluarkannya saat tegangan turun, sehingga gelombang DC menjadi rata dan halus.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. Transformator Step-Up</summary>
+    <div class="quiz-answer wrong">❌ Salah. Trafo step-up berfungsi menaikkan level tegangan AC, bukan meratakan tegangan DC.</div>
+  </details>
+ </div>`
+      },
+      {
+        id: 'bab-4',
+        title: 'Sensor, Transduser & Relay Kontrol Beban',
+        content: `<h2>Sensor, Transduser & Relay Kontrol</h2>
+<p>Dalam teknik instalasi modern, sistem penerangan dan proteksi listrik banyak dikendalikan otomatis oleh <strong>sensor</strong> dan saklar elektromagnetik bernama <strong>Relay</strong>.</p>
+
+<h3>1. Sensor Cahaya (LDR - Light Dependent Resistor)</h3>
+<p><strong>LDR</strong> adalah resistor peka cahaya yang nilai resistansinya berubah drastis sesuai intensitas cahaya yang mengenai permukaannya:</p>
+<ul>
+  <li><strong>Kondisi Terang (Siang Hari)</strong> — Hambatan LDR turun drastis hingga puluhan Ohm (Ω).</li>
+  <li><strong>Kondisi Gelap (Malam Hari)</strong> — Hambatan LDR naik sangat tinggi hingga beberapa MegaOhm (MΩ).</li>
+  <li><strong>Aplikasi</strong> — Saklar penerangan jalan umum (PJU) otomatis dan lampu taman sensor malam.</li>
+</ul>
+
+<h3>2. Sensor Suhu (Thermistor NTC & PTC)</h3>
+<ul>
+  <li><strong>NTC (Negative Temperature Coefficient)</strong> — Hambatan akan <em>mengecil</em> saat suhu sekitar memanas. Sering digunakan sebagai sensor suhu motor listrik dan heatsink transistor daya.</li>
+  <li><strong>PTC (Positive Temperature Coefficient)</strong> — Hambatan akan <em>membesar</em> saat suhu memanas. Digunakan sebagai proteksi arus lebih (fuse otomatis).</li>
+</ul>
+
+<h3>3. Relay Elektromagnetik (Jembatan Arus Lemah ke Kuat)</h3>
+<p><strong>Relay</strong> adalah saklar mekanik yang digerakkan oleh medan elektromagnetik koil (arus DC kecil 5V/12V) untuk menyambung/memutus arus listrik tegangan tinggi (220V AC PLN).</p>
+<ul>
+  <li><strong>Koil (A1 - A2)</strong> — Kumparan penggerak medan magnet.</li>
+  <li><strong>COM (Common)</strong> — Terminal kontak utama input arus.</li>
+  <li><strong>NO (Normally Open)</strong> — Kontak terbuka saat koil tidak dialiri listrik; menyambung (ON) saat koil aktif.</li>
+  <li><strong>NC (Normally Closed)</strong> — Kontak tertutup saat koil tidak dialiri listrik; terputus (OFF) saat koil aktif.</li>
+</ul>
+
+<blockquote>Relay memberikan isolasi galvanis 100% antara rangkaian kontrol bertegangan rendah (aman disentuh) dengan beban instalasi 220V AC berdaya besar.</blockquote>
+
+<div class="mini-quiz-box">
+  <h4>📝 Kuis Mandiri: Uji Pemahamanmu (Bab 4)</h4>
+  <p>Bagaimanakah karakteristik hambatan sensor LDR saat kondisi lingkungan berada dalam keadaan gelap gulita?</p>
+  <details class="quiz-option-details">
+    <summary>A. Nilai hambatannya menjadi sangat besar (MegaOhm)</summary>
+    <div class="quiz-answer correct">✅ Benar! Saat tidak ada cahaya yang mengenai material kadmium sulfida (CdS) pada LDR, hambatannya naik drastis hingga mencapai jutaan Ohm (MegaOhm).</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>B. Nilai hambatannya turun menjadi 0 Ohm</summary>
+    <div class="quiz-answer wrong">❌ Salah. Hambatan LDR mengecil saat terkena cahaya terang, bukan saat gelap.</div>
+  </details>
+  <details class="quiz-option-details">
+    <summary>C. Nilai hambatannya konstan tidak terpengaruh</summary>
+    <div class="quiz-answer wrong">❌ Salah. LDR adalah komponen peka cahaya dengan resistansi dinamis.</div>
+  </details>
+</div>`
+      }
+    ]
   }
 ];
 
 // Helper function to get subject badge class
 export function getSubjectBadgeClass(subject) {
+  if (subject === 'elektronika-dasar') return 'badge-secondary';
   return 'badge-instalasi';
 }
 
 // Helper function to get subject label
 export function getSubjectLabel(subject) {
+  if (subject === 'elektronika-dasar') return 'Elektronika Dasar';
   return 'Instalasi Penerangan';
 }

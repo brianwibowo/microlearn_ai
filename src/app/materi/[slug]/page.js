@@ -48,8 +48,8 @@ export default function MateriDetailPage({ params }) {
         <div className="materi-detail-layout">
           {/* Main Content Area */}
           <div className="materi-detail-main card animate-fade-in">
-            <span className="badge badge-instalasi" style={{ marginBottom: '12px' }}>
-              Instalasi Penerangan
+            <span className={`badge ${materi.subject === 'elektronika-dasar' ? 'badge-secondary' : 'badge-instalasi'}`} style={{ marginBottom: '12px' }}>
+              {materi.subject === 'elektronika-dasar' ? 'Elektronika Dasar' : 'Instalasi Penerangan'}
             </span>
             <h1>{materi.title}</h1>
 
@@ -57,6 +57,36 @@ export default function MateriDetailPage({ params }) {
               <span><Clock size={16} /> Estimasi: {materi.estimatedTime}</span>
               <span><BookOpen size={16} /> Total: {materi.chapters.length} Bab</span>
             </div>
+
+            {/* Mobile Chapter Quick Jump Chips */}
+            <div className="mobile-chapter-selector">
+              <div className="mobile-chapter-selector-header">
+                <span className="mobile-chapter-label">
+                  <FileText size={15} />
+                  Bab Aktif ({activeChapterIndex + 1}/{materi.chapters.length}):
+                </span>
+                <span className="mobile-chapter-current">{activeChapter.title}</span>
+              </div>
+              <div className="mobile-chapter-chips">
+                {materi.chapters.map((chap, idx) => (
+                  <button
+                    key={chap.id}
+                    className={`mobile-chapter-chip ${activeChapterIndex === idx ? 'active' : ''}`}
+                    onClick={() => {
+                      setActiveChapterIndex(idx);
+                      const el = document.getElementById('chapter-content-start');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    aria-label={`Pilih Bab ${idx + 1}: ${chap.title}`}
+                  >
+                    Bab {idx + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Anchor for smooth scroll on chapter change */}
+            <div id="chapter-content-start" />
 
             {/* Render active chapter content */}
             <div style={{ marginTop: 'var(--space-xl)' }}>

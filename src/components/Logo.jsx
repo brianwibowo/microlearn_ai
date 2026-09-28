@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Logo({ size = 32, showText = true, className = '', light = false }) {
+export default function Logo({ size = 32, showText = true, className = '', light = false, fontSize }) {
   // Select text color gradient based on background (light logo for dark footer, dark logo for white navbar)
   const textGradient = light 
     ? 'linear-gradient(135deg, #F8FAFC, #94A3B8)' 
@@ -65,7 +65,7 @@ export default function Logo({ size = 32, showText = true, className = '', light
           className="logo-text"
           style={{
             fontWeight: 800,
-            fontSize: '1.25rem',
+            fontSize: fontSize || '1.25rem',
             letterSpacing: '-0.5px',
             background: textGradient,
             WebkitBackgroundClip: 'text',

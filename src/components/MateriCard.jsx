@@ -176,6 +176,34 @@ function getMateriIllustration(slug) {
         </svg>
       );
 
+    case 'dasar-elektronika':
+      return (
+        <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="120" fill="url(#grad-elektronika)" />
+          {/* Circuit PCB tracks */}
+          <path d="M 20 40 H 70 V 70 H 130 V 40 H 180" stroke="rgba(56,189,248,0.3)" strokeWidth="2" strokeDasharray="4 2" />
+          {/* IC Chip */}
+          <rect x="75" y="45" width="50" height="30" rx="3" fill="#1E293B" stroke="#60A5FA" strokeWidth="1.5" />
+          <line x1="85" y1="45" x2="85" y2="40" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="100" y1="45" x2="100" y2="40" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="115" y1="45" x2="115" y2="40" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="85" y1="75" x2="85" y2="80" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="100" y1="75" x2="100" y2="80" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="115" y1="75" x2="115" y2="80" stroke="#94A3B8" strokeWidth="2" />
+          <circle cx="83" cy="53" r="2" fill="#FBBF24" />
+          {/* Transistor / Diode */}
+          <circle cx="45" cy="40" r="8" fill="#334155" stroke="#38BDF8" strokeWidth="1.5" />
+          <path d="M 42 36 L 48 40 L 42 44 Z" fill="#38BDF8" />
+          <text x="100" y="102" fill="#38BDF8" fontSize="8" fontWeight="bold" textAnchor="middle">IC &amp; SEMIKONDUKTOR</text>
+          <defs>
+            <linearGradient id="grad-elektronika" x1="0" y1="0" x2="200" y2="120" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#0B132B" />
+              <stop offset="1" stopColor="#1E1B4B" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
     default:
       return (
         <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -195,8 +223,17 @@ function getMateriIllustration(slug) {
 export default function MateriCard({ materi }) {
   return (
     <Link href={`/materi/${materi.slug}`} className="materi-card">
-      <div className="materi-card-image" style={{ overflow: 'hidden', padding: 0 }}>
-        {getMateriIllustration(materi.slug)}
+      <div className="materi-card-image">
+        {materi.thumbnail ? (
+          <img
+            src={materi.thumbnail}
+            alt={materi.title}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          getMateriIllustration(materi.slug)
+        )}
       </div>
       <div className="materi-card-body">
         <div className="materi-card-badge">

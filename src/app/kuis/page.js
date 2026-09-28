@@ -30,17 +30,32 @@ export default function KuisPage() {
       </header>
 
       <div className="container" style={{ marginTop: 'var(--space-2xl)' }}>
-        <div className="grid grid-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>
+        <div className="grid grid-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '20px' }}>
           {kuisList.map((quiz) => (
-            <div key={quiz.slug} className="card animate-fade-in" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <span className="badge badge-instalasi">Instalasi Penerangan</span>
-                <span className={`badge ${getDifficultyColor(quiz.difficulty)}`}>{quiz.difficulty}</span>
+            <div key={quiz.slug} className="card animate-fade-in" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px 20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+                <span className={`badge ${quiz.subject === 'elektronika-dasar' ? 'badge-secondary' : 'badge-instalasi'}`}>
+                  {quiz.subject === 'elektronika-dasar' ? 'Elektronika Dasar' : 'Instalasi Penerangan'}
+                </span>
+                <span className="badge badge-primary" style={{ fontSize: '0.75rem' }}>
+                  Proporsional (12 Soal)
+                </span>
               </div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: '12px', lineHeight: '1.4' }}>{quiz.title}</h3>
-              <p style={{ fontSize: 'var(--fs-small)', color: 'var(--neutral-500)', flex: 1, marginBottom: '20px', lineHeight: '1.6' }}>
+              <p style={{ fontSize: 'var(--fs-small)', color: 'var(--neutral-500)', flex: 1, marginBottom: '14px', lineHeight: '1.6' }}>
                 {quiz.description}
               </p>
+              <div style={{
+                display: 'flex',
+                gap: '6px',
+                flexWrap: 'wrap',
+                marginBottom: '16px',
+                fontSize: '0.75rem'
+              }}>
+                <span className="badge badge-secondary" style={{ padding: '2px 8px' }}>4 Mudah</span>
+                <span className="badge badge-accent" style={{ padding: '2px 8px' }}>5 Sedang</span>
+                <span className="badge badge-danger" style={{ padding: '2px 8px' }}>3 Sulit (HOTS)</span>
+              </div>
               <div
                 style={{
                   display: 'flex',
@@ -63,7 +78,7 @@ export default function KuisPage() {
                 <Link
                   href={`/kuis/${quiz.slug}`}
                   className="btn btn-primary btn-sm"
-                  style={{ padding: '8px 16px', borderRadius: 'var(--radius-sm)' }}
+                  style={{ minHeight: '44px', padding: '10px 18px', borderRadius: 'var(--radius-sm)' }}
                 >
                   Mulai
                   <ChevronRight size={14} />
